@@ -11,7 +11,7 @@ export default function HomePage() {
         </Text>
 
             
-        <TouchableOpacity onPress="" style={styles.btn}>
+        <TouchableOpacity onPress={() => alert('View Clicked')}  style={styles.btn}>
             <Text style={{color:"#fff",fontSize:20,fontWeight: "bold", padding:1,paddingRight:30,paddingLeft:30}}>Explorer</Text>
         </TouchableOpacity>
 
@@ -35,7 +35,7 @@ export default function HomePage() {
     },
     img_travel: {
       width:'100%',
-      height: 315,
+      height: 400,
       marginTop:20,
     },
     baseText: {
