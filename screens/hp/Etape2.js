@@ -11,7 +11,7 @@ export default function Etape2({navigation}) {
     };
 
     const  handlessPressNext = () => {
-      navigation.navigate('')
+      navigation.navigate('Signup')
     
       };
 
@@ -38,7 +38,7 @@ export default function Etape2({navigation}) {
             </Text>
         </TouchableOpacity>    
 
-        <TouchableOpacity onPress={() => alert('View Clicked')} style={styles.btn}>
+        <TouchableOpacity onPress={handlessPressNext} style={styles.btn}>
             <Text style={{paddingRight:10,paddingLeft:30}}>
             <Icon name="arrow-right" size={30} color="#d43d35"  />
 
