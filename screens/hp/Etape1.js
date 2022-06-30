@@ -4,6 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Etape1({navigation}) {
 
+  const  handlessPressBack = () => {
+    navigation.goBack()
+  
+    };
 
   const  handlessPress = () => {
     navigation.navigate('Etape2')
@@ -24,11 +28,23 @@ export default function Etape1({navigation}) {
         </Text>
 
             
+        <Text>
+        <TouchableOpacity onPress={handlessPressBack} style={styles.btn}>
+            <Text style={{paddingRight:10,paddingLeft:30}}>
+            <Icon name="arrow-left" size={30} color="#d43d35"  />
+
+            
+            </Text>
+        </TouchableOpacity>    
+
         <TouchableOpacity onPress={handlessPress} style={styles.btn}>
-            <Text style={{paddingRight:30,paddingLeft:30}}>
+            <Text style={{paddingRight:10,paddingLeft:30}}>
             <Icon name="arrow-right" size={30} color="#d43d35"  />
+
+            
             </Text>
         </TouchableOpacity>
+        </Text>
 
 
      
@@ -50,7 +66,7 @@ export default function Etape1({navigation}) {
     img_travel: {
       width:'78%',
       height: '60%',
-      //marginTop:20,
+
     },
     baseText: {
         fontFamily: "Verdana",

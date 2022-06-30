@@ -64,7 +64,8 @@ export default function Etape2({navigation}) {
     img_travel: {
       width:'100%',
       height: '60%',
-      //marginTop:20,
+     
+
     },
     baseText: {
         fontFamily: "Verdana",
