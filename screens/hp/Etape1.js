@@ -2,7 +2,14 @@ import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground} from 'r
 import React from "react";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Etape1() {
+export default function Etape1({navigation}) {
+
+
+  const  handlessPress = () => {
+    navigation.navigate('Etape2')
+  
+    };
+
     return (
       <View style={styles.container}>
            <Image
@@ -17,9 +24,9 @@ export default function Etape1() {
         </Text>
 
             
-        <TouchableOpacity onPress={() => alert('View Clicked')} style={styles.btn}>
+        <TouchableOpacity onPress={handlessPress} style={styles.btn}>
             <Text style={{paddingRight:30,paddingLeft:30}}>
-            <Icon name="arrow-right" size={30} color="#fff"  />
+            <Icon name="arrow-right" size={30} color="#d43d35"  />
             </Text>
         </TouchableOpacity>
 
@@ -37,11 +44,11 @@ export default function Etape1() {
       paddingTop: 50,
       margin:10,
       alignItems:"center",
-      backgroundColor: '#fff',
+      //backgroundColor: '#fff',
       justifyContent: 'center',
     },
     img_travel: {
-      width:'85%',
+      width:'78%',
       height: '60%',
       //marginTop:20,
     },
@@ -56,8 +63,8 @@ export default function Etape1() {
           fontWeight: "bold"
       },
       btn:{
-        backgroundColor:'#d43d35',
-        borderRadius: 50,
+       // backgroundColor:'#d43d35',
+        //borderRadius: 50,
         padding:10,
         fontWeight: "bold",
        

@@ -2,7 +2,19 @@ import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground} from 'r
 import React from "react";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Etape2() {
+export default function Etape2({navigation}) {
+
+
+  const  handlessPressBack = () => {
+    navigation.goBack()
+  
+    };
+
+    const  handlessPressNext = () => {
+      navigation.navigate('')
+    
+      };
+
     return (
       <View style={styles.container}>
            <Image
@@ -17,16 +29,25 @@ export default function Etape2() {
         </Text>
 
             
+        <Text>
+        <TouchableOpacity onPress={handlessPressBack} style={styles.btn}>
+            <Text style={{paddingRight:10,paddingLeft:30}}>
+            <Icon name="arrow-left" size={30} color="#d43d35"  />
+
+            
+            </Text>
+        </TouchableOpacity>    
+
         <TouchableOpacity onPress={() => alert('View Clicked')} style={styles.btn}>
-            <Text style={{paddingRight:30,paddingLeft:30}}>
-            <Icon name="arrow-right" size={30} color="#fff"  />
+            <Text style={{paddingRight:10,paddingLeft:30}}>
+            <Icon name="arrow-right" size={30} color="#d43d35"  />
+
+            
             </Text>
         </TouchableOpacity>
+        </Text>
 
-
-     
-
-
+        
 
       </View>
     );
@@ -37,7 +58,7 @@ export default function Etape2() {
       paddingTop: 50,
       margin:10,
       alignItems:"center",
-      backgroundColor: '#fff',
+     // backgroundColor: '#fff',
       justifyContent: 'center',
     },
     img_travel: {
@@ -56,8 +77,8 @@ export default function Etape2() {
           fontWeight: "bold"
       },
       btn:{
-        backgroundColor:'#d43d35',
-        borderRadius: 50,
+       // backgroundColor:'#d43d35',
+       // borderRadius: 50,
         padding:10,
         fontWeight: "bold",
        

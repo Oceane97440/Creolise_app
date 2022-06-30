@@ -1,0 +1,20 @@
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import HomePage from '../screens/hp/HomePage';
+import Etape1 from '../screens/hp/Etape1';
+import Etape2 from '../screens/hp/Etape2';
+
+const AppNavigator = createStackNavigator({
+    Home: {
+        screen: HomePage,
+    },
+    Etape1: {
+        screen: Etape1,
+    },
+    Etape2: {
+        screen: Etape2,
+    },
+});
+
+
+export default createAppContainer(AppNavigator);

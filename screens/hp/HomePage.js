@@ -1,7 +1,14 @@
 import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground} from 'react-native';
 import React from "react";
 
-export default function HomePage() {
+export default function HomePage({navigation}) {
+
+
+ const  handlessPress = () => {
+  navigation.navigate('Etape1')
+
+  };
+
     return (
       <View style={styles.container}>
           <Text style={styles.baseText}>
@@ -11,7 +18,7 @@ export default function HomePage() {
         </Text>
 
             
-        <TouchableOpacity onPress={() => alert('View Clicked')}  style={styles.btn}>
+        <TouchableOpacity onPress={handlessPress}  style={styles.btn}>
             <Text style={{color:"#fff",fontSize:20,fontWeight: "bold", padding:1,paddingRight:30,paddingLeft:30}}>Explorer</Text>
         </TouchableOpacity>
 
