@@ -4,6 +4,7 @@ import HomePage from '../screens/hp/HomePage';
 import Etape1 from '../screens/hp/Etape1';
 import Etape2 from '../screens/hp/Etape2';
 import Signup from '../screens/login/Signup';
+import Login from '../screens/login/Login';
 
 const AppNavigator = createStackNavigator({
     Home: {
@@ -18,6 +19,9 @@ const AppNavigator = createStackNavigator({
     Signup: {
         screen: Signup,
     },
+    Login:{
+        screen:Login
+    }
 });
 
 
