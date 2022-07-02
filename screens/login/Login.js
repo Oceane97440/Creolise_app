@@ -8,6 +8,10 @@ export default function Login({navigation}) {
     navigation.navigate('Signup')
   
     };  
+    const  handlessPressHome= () => {
+      navigation.navigate('Index')
+    
+      };  
 
     return (
       <View style={styles.container}>
@@ -27,7 +31,7 @@ export default function Login({navigation}) {
 
 
 
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity onPress={handlessPressHome} style={styles.btn}>
             <Text style={{color:'#fff', textAlign:'center',fontWeight:'bold',fontSize:22}}>Valider</Text>
         </TouchableOpacity>  
        
