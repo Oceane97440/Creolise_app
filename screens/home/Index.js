@@ -46,19 +46,32 @@ export default function Index() {
 
 
         <View style={styles.divCard}>
-        <Text style={styles.textCard}> Saint-Denis</Text>
+
+        <Text style={styles.textCardTop}> Saint-Denis</Text>
 
         <TouchableOpacity>
         <Icon name="heart" size={30} color="#d43d35" style={styles.iconlike} />
         </TouchableOpacity>
+
+     
+        <View style={styles.textContaireBotton}>
+        <Text style={styles.textCardBottom}>Hotêl Dina</Text>
+        <Text style={styles.prix}>210€/nuit</Text>
+        </View>
+
+
+
 
         </View>
 
 
 
 
+
+
        </View>
 
+ 
      
 
        <View>
@@ -67,45 +80,92 @@ export default function Index() {
 
 
         <View style={styles.divCard}>
-        <Text style={styles.textCard}> Saint-Denis</Text>
+
+        <Text style={styles.textCardTop}> Saint-Denis</Text>
 
         <TouchableOpacity>
         <Icon name="heart" size={30} color="#d43d35" style={styles.iconlike} />
         </TouchableOpacity>
 
+        <View style={styles.textContaireBotton}>
+        <Text style={styles.textCardBottom}>Hotêl Dina</Text>
+        <Text style={styles.prix}>210€/nuit</Text>
         </View>
+         
 
 
 
 
-       </View>
-
-
-       <View>
-       <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
-       style={styles.img} />
-
-
-        <View style={styles.divCard}>
-        <Text style={styles.textCard}> Saint-Denis</Text>
-
-        <TouchableOpacity>
-        <Icon name="heart" size={30} color="#fff" style={styles.iconlike} />
-        </TouchableOpacity>
 
         </View>
 
 
 
 
+
+
        </View>
-     
+
     
        </ScrollView>
       </View>
 
+
+
+     
+
+    <Text style={styles.h2}>Catégories</Text> 
+
+
+<View style={styles.divCat}>
+
+<View  style={styles.blocCat}>
+
+
       
-      </View>
+<TouchableOpacity>
+<Image
+style={styles.iconCat}
+source={require('../../public/img/3d-fluency-oak-tree.png')}/>
+</TouchableOpacity>  
+
+
+<TouchableOpacity>
+<Image
+style={styles.iconCat}
+source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
+</TouchableOpacity>
+
+<TouchableOpacity>
+<Image
+style={styles.iconCat}
+source={require('../../public/img/3d-fluency-orange-suitcase.png')}/>
+</TouchableOpacity>
+
+</View>
+
+
+<View  style={styles.blocTextCat}>
+
+
+  
+<Text style={styles.textCat}>
+Nature
+</Text>
+<Text style={styles.textCat}>
+Restaurants
+</Text>
+<Text style={styles.textCat}>
+Hotêls 
+</Text>
+
+</View>
+
+</View>
+
+</View>
+
+
     );
   
 }
@@ -134,6 +194,11 @@ const styles = StyleSheet.create({
           color:"#125386",
           fontSize: 30,
           fontWeight: "bold"
+      },
+      h2:{
+        color:"#125386",
+        fontSize: 20,
+        fontWeight: "bold"
       },
       input:{
 
@@ -175,9 +240,69 @@ const styles = StyleSheet.create({
       flexDirection:'row',
       alignItems:'center'
     },
-    textCard:{
-      position: 'relative',bottom:170,left:0,color:"#fff",fontWeight:'bold',
-      
+    textCardTop:{
+      position: 'relative',
+      bottom:170,
+      left:0,
+      color:"#fff",
+      fontWeight:'bold',
     },
-    iconlike:{position: 'relative',bottom:170,left:70}
+    iconlike:{
+      position: 'relative',
+      bottom:170,
+      left:70
+    },
+    textCardBottom:{
+      position: 'relative',
+      bottom:30,
+      right:90,
+      color:"#fff",
+      fontWeight:'bold',
+
+    },
+    prix:{
+      position: 'relative',
+      bottom:30,
+      right:40,
+      color:'#d43d35',
+      fontWeight:'bold',
+      backgroundColor:'#FFF'
+      
+
+    },
+    textContaireBotton:{
+      display:'flex',
+      flexDirection:'row',
+      alignItems:'center',
+      marginLeft:-20
+    },
+    iconCat:{
+      width:60,
+      height:60,
+      marginLeft:30
+      
+    
+    },
+    blocCat:{
+      display:'flex',
+      flexDirection:'row',
+      alignItems:'center',
+      marginLeft:30
+    },
+    blocTextCat:{
+      display:'flex',
+      flexDirection:'row',
+      alignItems:'center',
+      textAlign:'center',
+      marginLeft:80
+    },
+    textCat:{
+   // marginLeft:20
+    },
+    divCat:{
+    
+      alignItems:'center',
+      textAlign:'center',
+      display:'flex'
+    }
 });
