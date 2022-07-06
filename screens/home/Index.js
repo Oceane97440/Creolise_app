@@ -44,32 +44,62 @@ export default function Index() {
        <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
        style={styles.img} />
 
+
+        <View style={styles.divCard}>
+        <Text style={styles.textCard}> Saint-Denis</Text>
+
         <TouchableOpacity>
-        <Icon name="heart" size={30} color="#d43d35" style={{position: 'relative',bottom:170,left:150}} />
+        <Icon name="heart" size={30} color="#d43d35" style={styles.iconlike} />
         </TouchableOpacity>
 
+        </View>
+
+
+
+
        </View>
+
+     
 
        <View>
-       <Image source={{uri: 'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/32/05/320511_v6.jpeg'}}
+       <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
        style={styles.img} />
 
+
+        <View style={styles.divCard}>
+        <Text style={styles.textCard}> Saint-Denis</Text>
+
         <TouchableOpacity>
-        <Icon name="heart" size={30} color="#d43d35" style={{position: 'relative',bottom:170,left:150}} />
+        <Icon name="heart" size={30} color="#d43d35" style={styles.iconlike} />
         </TouchableOpacity>
+
+        </View>
+
+
+
 
        </View>
 
 
        <View>
-       <Image source={{uri: 'https://media-cdn.tripadvisor.com/media/photo-s/05/73/64/58/hotel-les-creoles.jpg'}}
+       <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
        style={styles.img} />
 
+
+        <View style={styles.divCard}>
+        <Text style={styles.textCard}> Saint-Denis</Text>
+
         <TouchableOpacity>
-        <Icon name="heart" size={30} color="#fff" style={{position: 'relative',bottom:170,left:150}} />
+        <Icon name="heart" size={30} color="#fff" style={styles.iconlike} />
         </TouchableOpacity>
 
+        </View>
+
+
+
+
        </View>
+     
     
        </ScrollView>
       </View>
@@ -139,5 +169,15 @@ const styles = StyleSheet.create({
       height:180,
       borderRadius:10,
       marginRight:25
-    }
+    },
+    divCard:{
+      display:'flex',
+      flexDirection:'row',
+      alignItems:'center'
+    },
+    textCard:{
+      position: 'relative',bottom:170,left:0,color:"#fff",fontWeight:'bold',
+      
+    },
+    iconlike:{position: 'relative',bottom:170,left:70}
 });
