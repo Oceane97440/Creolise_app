@@ -127,39 +127,33 @@ export default function Index() {
 <Image
 style={styles.iconCat}
 source={require('../../public/img/3d-fluency-oak-tree.png')}/>
+<Text style={styles.textCat}>
+Nature
+</Text>
 </TouchableOpacity>  
 
 
 <TouchableOpacity>
 <Image
-style={styles.iconCat}
+style={[styles.iconCat,{marginLeft:36}]}
 source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
+<Text style={styles.textCat}>
+Restaurants
+</Text>
 </TouchableOpacity>
 
 <TouchableOpacity>
 <Image
 style={styles.iconCat}
 source={require('../../public/img/3d-fluency-orange-suitcase.png')}/>
+<Text style={styles.textCat}>
+Hotêls 
+</Text>
 </TouchableOpacity>
 
 </View>
 
 
-<View  style={styles.blocTextCat}>
-
-
-  
-<Text style={styles.textCat}>
-Nature
-</Text>
-<Text style={styles.textCat}>
-Restaurants
-</Text>
-<Text style={styles.textCat}>
-Hotêls 
-</Text>
-
-</View>
 
 </View>
 
@@ -279,7 +273,8 @@ const styles = StyleSheet.create({
     iconCat:{
       width:60,
       height:60,
-      marginLeft:30
+      marginLeft:30,
+
       
     
     },
@@ -287,22 +282,26 @@ const styles = StyleSheet.create({
       display:'flex',
       flexDirection:'row',
       alignItems:'center',
-      marginLeft:30
+      
     },
     blocTextCat:{
-      display:'flex',
       flexDirection:'row',
-      alignItems:'center',
       textAlign:'center',
-      marginLeft:80
     },
     textCat:{
-   // marginLeft:20
+      display:'flex',
+      textAlign:'center',
+      marginLeft:20,
+      paddingLeft:10
+
     },
     divCat:{
-    
+      display:'flex',
+      alignContent:'center',
       alignItems:'center',
       textAlign:'center',
-      display:'flex'
+      display:'flex',
+      marginLeft:20,
+      
     }
 });
