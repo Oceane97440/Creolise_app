@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 import React from "react";
 import HomeStackNav from './routes/HomeStackNav';
 import Index from './screens/home/Index';
+import Detaile from './screens/home/Detail';
 export default function App() {
 
 
@@ -11,7 +12,7 @@ export default function App() {
 
     <View style={styles.container} >
 
-      <Index />
+      <Detaile />
 
     </View>
   );

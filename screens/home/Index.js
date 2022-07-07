@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Index() {
+export default function Index({navigation}) {
+
+  const  handlessPressDetail= () => {
+    navigation.navigate('Detaile')
+  
+    };  
   
     return (
       <View style={styles.container}>
@@ -41,8 +46,11 @@ export default function Index() {
       <ScrollView horizontal={true}>
 
        <View>
+       <TouchableOpacity onPress={handlessPressDetail}>
        <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
        style={styles.img} />
+       </TouchableOpacity>
+  
 
 
         <View style={styles.divCard}>
@@ -301,7 +309,8 @@ const styles = StyleSheet.create({
       alignItems:'center',
       textAlign:'center',
       display:'flex',
-      marginLeft:20,
+      marginLeft:35,
+      marginTop:10
       
     }
 });
