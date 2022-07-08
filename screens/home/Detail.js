@@ -21,9 +21,38 @@ export default function Detaile(){
         </View>
         
         <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
-       style={styles.img} />
+       style={styles.imghead} />
 
 
+        <View style={styles.divInfo}>
+
+            <View style={styles.titre}>
+
+            <Text style={styles.h1}>Hotêl Dina</Text>
+            <Text style={styles.price}>100€/nuit</Text>
+
+            </View>
+
+        
+            <Text> <Icon name="star" size={25} color="#f2da15" style={styles.iconhead} /> 4.5 (16 avis)</Text>
+        
+      
+
+                <View style={styles.divDescription}>
+
+                <Text>
+                Situé à Saint-Denis, à 700 mètres de la cathédrale, le DINA MORGABINE SAINT DENIS propose un restaurant, un parking privé, une salle de sport et un bar. Il se trouve à environ 1,3 km du musée d'histoire naturelle de la Réunion et à 2,8 km du parc de la Trinité.
+
+
+               
+                </Text>
+
+
+                </View>
+           
+         
+         
+        </View>
 
 
 
@@ -60,6 +89,34 @@ const styles = StyleSheet.create({
         margin:10
     },
     imghead:{
+        width:"100%",
+        height:250,
+        borderRadius:20,
+    },
+    divInfo:{
 
+    },
+    h1:{
+        color:"#125386",
+        fontSize: 25,
+        fontWeight: "bold"
+    },
+    price:{
+        color:"#d43d35",
+        fontSize: 25,
+        fontWeight: "bold"
+    },
+    titre:{
+        display:'flex',
+        flexDirection:'row',
+        width: '100%',
+        justifyContent:'space-between',
+        padding:10
+    },
+    divDescription:{
+       
+        textAlign:'left',
+        marginTop:20,
+        width:350
     }
 })   
