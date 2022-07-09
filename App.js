@@ -12,7 +12,7 @@ export default function App() {
 
     <View style={styles.container} >
 
-      <Detaile />
+      <HomeStackNav />
 
     </View>
   );

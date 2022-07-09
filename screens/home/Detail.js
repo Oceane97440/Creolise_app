@@ -41,12 +41,56 @@ export default function Detaile(){
                 <View style={styles.divDescription}>
 
                 <Text>
-                Situé à Saint-Denis, à 700 mètres de la cathédrale, le DINA MORGABINE SAINT DENIS propose un restaurant, un parking privé, une salle de sport et un bar. Il se trouve à environ 1,3 km du musée d'histoire naturelle de la Réunion et à 2,8 km du parc de la Trinité.
+                Situé à Saint-Denis, à 700 mètres de la cathédrale, le DINA MORGABINE SAINT DENIS propose un restaurant, un parking privé, une salle de sport et un bar. Il se trouve à environ 1,3 km du musée d'histoire naturelle de la Réunion et à 2,8 km du parc de la Trinité.</Text>
 
 
-               
-                </Text>
+                
 
+
+                <Text style={styles.h2}>Points forts :</Text>
+
+                <View style={styles.divIcon}>
+
+                <Image style={styles.icon} source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
+                <Text style={styles.textIcon}>Restaurant</Text>
+
+                <Image style={styles.icon} source={require('../../public/img/3d-fluency-football-player.png')}/>
+                <Text style={styles.textIcon}>Salle de sport</Text>
+
+                <Image style={styles.icon} source={require('../../public/img/3d-fluency-pink-flower.png')}/>
+                <Text style={styles.textIcon}>Spa/détante</Text>
+
+
+
+                <Image style={styles.icon} source={require('../../public/img/3d-fluency-blue-car.png')}/>
+                <Text style={styles.textIcon}>Place de parking</Text>
+
+
+
+
+                </View>
+
+
+                <View style={styles.divBtn}>
+                <TouchableOpacity onPress={3}  style={styles.btnSite}>
+                    <Text style={{color:"#fff",fontSize:20,fontWeight: "bold" ,padding:10}}>
+                    <Icon name="link" size={20} color="#fff" style={styles.iconSite} />
+
+                        
+                        Voir le site</Text>
+                </TouchableOpacity>
+
+
+                <TouchableOpacity onPress={3}  style={styles.btnPhone}>
+                    <Text style={{color:"#d43d35",fontSize:20,fontWeight: "bold" ,padding:10}}>
+                    <Icon name="phone" size={20} color="#d43d35" style={styles.iconSite} />
+
+                        
+                        Réserver</Text>
+                </TouchableOpacity>
+
+
+                </View>
 
                 </View>
            
@@ -72,7 +116,7 @@ export default function Detaile(){
 
 const styles = StyleSheet.create({
     container:{
-        paddingTop: 30,
+        paddingTop: 20,
         margin:10,
         alignItems:"left",
         //justifyContent: 'center',
@@ -95,6 +139,7 @@ const styles = StyleSheet.create({
     },
     divInfo:{
 
+        padding:2
     },
     h1:{
         color:"#125386",
@@ -115,8 +160,81 @@ const styles = StyleSheet.create({
     },
     divDescription:{
        
-        textAlign:'left',
-        marginTop:20,
-        width:350
-    }
+        marginTop:10,
+        width:400,
+        
+    },
+    h2:{
+        color:"#125386",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginTop:5
+    },
+    icon:{
+        width:40,
+        height:40,
+   
+    },
+    divIcon:{
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        margin:5,
+        alignContent:'center',
+        alignItems:'center',
+    },
+    textIcon:{
+
+        padding:2,
+        fontSize:14
+    },
+    btnSite:{
+        backgroundColor:'#d43d35',
+        borderRadius: 20,
+        fontWeight: "bold",
+         height:60,
+        width:'49%',
+        alignItems:'center',
+        padding:10,
+        
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
+       
+      },
+      btnPhone:{
+        backgroundColor:'#f5f5f5',
+        borderRadius: 20,
+        fontWeight: "bold",
+         height:60,
+        width:'49%',
+        alignItems:'center',
+        padding:10,
+        
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
+       
+      },
+      divBtn:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignContent:'center',
+        margin:10
+      },
+     
 })   
