@@ -2,14 +2,29 @@ import React from 'react';
 import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Detaile(){
+export default function Detaile({navigation}){
+
+    const  handlessPressBack = () => {
+        navigation.goBack()
+      
+        };
 
     return (
 
         <View style={styles.container}>
 
+       
+
+
         <View style={styles.divBtnHead}>
 
+        <View style={styles.divIconBack}>  
+        <TouchableOpacity onPress={handlessPressBack}>
+            <Icon name="arrow-left"  size={30} style={styles.iconback} color="#000"  /> 
+        </TouchableOpacity>    
+        </View> 
+
+        <View style={styles.divIcon}>
         <TouchableOpacity>
         <Icon name="heart" size={30} color="#d43d35" style={styles.iconhead} />
         </TouchableOpacity>
@@ -19,7 +34,7 @@ export default function Detaile(){
         </TouchableOpacity>
 
         </View>
-        
+        </View>
         <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
        style={styles.imghead} />
 
@@ -41,7 +56,7 @@ export default function Detaile(){
                 <View style={styles.divDescription}>
 
                 <Text>
-                Situé à Saint-Denis, à 700 mètres de la cathédrale, le DINA MORGABINE SAINT DENIS propose un restaurant, un parking privé, une salle de sport et un bar. Il se trouve à environ 1,3 km du musée d'histoire naturelle de la Réunion et à 2,8 km du parc de la Trinité.</Text>
+                Situé à Saint-Denis, il se trouve à environ 1,3 km du musée d'histoire naturelle de la Réunion et à 2,8 km du parc de la Trinité.</Text>
 
 
                 
@@ -51,20 +66,28 @@ export default function Detaile(){
 
                 <View style={styles.divIcon}>
 
+                <View style={styles.divContenteIcone}>
+
                 <Image style={styles.icon} source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
                 <Text style={styles.textIcon}>Restaurant</Text>
 
+                </View>
+     
+
+                <View style={styles.divContenteIcone}>
                 <Image style={styles.icon} source={require('../../public/img/3d-fluency-football-player.png')}/>
                 <Text style={styles.textIcon}>Salle de sport</Text>
+                </View>
 
+                <View style={styles.divContenteIcone}>
                 <Image style={styles.icon} source={require('../../public/img/3d-fluency-pink-flower.png')}/>
-                <Text style={styles.textIcon}>Spa/détante</Text>
+                <Text style={styles.textIcon}>Spa</Text>
+                </View>
 
-
-
+                <View style={styles.divContenteIcone}>
                 <Image style={styles.icon} source={require('../../public/img/3d-fluency-blue-car.png')}/>
                 <Text style={styles.textIcon}>Place de parking</Text>
-
+                </View>
 
 
 
@@ -119,19 +142,31 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         margin:10,
         alignItems:"left",
-        //justifyContent: 'center',
     },
     divBtnHead:{
         display:'flex',
-        width: 358,
-        flexDirection:'row-reverse',
+        flexDirection:'row',
+        alignItems:'center',
         bottom:20,
+        justifyContent:'space-between',
         width: '100%',
+    },
+    divIcon:{
+   
+    float:'right'
     },
     iconhead:{
         padding:10,
         margin:10
     },
+    iconback:{
+        padding:10,
+        margin:10,
+      
+
+      
+    },
+
     imghead:{
         width:"100%",
         height:250,
@@ -161,7 +196,7 @@ const styles = StyleSheet.create({
     divDescription:{
        
         marginTop:10,
-        width:400,
+        alignSelf:'flex-start'
         
     },
     h2:{
@@ -179,24 +214,28 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection:'row',
-        justifyContent:'flex-start',
-        margin:5,
-        alignContent:'center',
-        alignItems:'center',
+        margin:1,
+      
     },
     textIcon:{
 
-        padding:2,
-        fontSize:14
+        padding:4,
+        fontSize:15,
+    },
+    divContenteIcone:{
+        textAlign:'center',
+        display:'flex',
+        flexDirection:'row',
+        alignItems:'center'
     },
     btnSite:{
         backgroundColor:'#d43d35',
         borderRadius: 20,
         fontWeight: "bold",
-         height:60,
+         height:54,
         width:'49%',
         alignItems:'center',
-        padding:10,
+        padding:5,
         
         shadowColor: "#000",
         shadowOffset: {
@@ -213,10 +252,10 @@ const styles = StyleSheet.create({
         backgroundColor:'#f5f5f5',
         borderRadius: 20,
         fontWeight: "bold",
-         height:60,
+        height:54,
         width:'49%',
         alignItems:'center',
-        padding:10,
+        padding:5,
         
         shadowColor: "#000",
         shadowOffset: {
