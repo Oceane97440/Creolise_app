@@ -2,15 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Detaile({navigation}){
+export default function Detaile({navigation,route}){
+
+
    
     
-    const { name } = navigation.state.params.item;
-    const { price } = navigation.state.params.item;
-    const { description } = navigation.state.params.item;
-    const { photos } = navigation.state.params.item;
-    const { avantage } = navigation.state.params.item;
-
+    const { name } = route.params.item;
+    const { price } = route.params.item;
+    const { description } = route.params.item;
+    const { photos } = route.params.item;
+    const { avantage } = route.params.item;
+ 
    
 
 
