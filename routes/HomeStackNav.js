@@ -11,7 +11,7 @@ import Detaile from '../screens/home/Detail';
 
 
 const AppNavigator = createStackNavigator({
-    Home: {
+    /*Home: {
         screen: HomePage,
         navigationOptions: {
             title: '',
@@ -41,11 +41,11 @@ const AppNavigator = createStackNavigator({
     },
     Login:{
         screen:Login,
-       /* navigationOptions: {
+       navigationOptions: {
             title: '',
             headerShown: false,
-        }*/
-    },
+        }
+    },*/
     Index:{
         screen:Index,
         navigationOptions: {

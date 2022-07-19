@@ -3,6 +3,28 @@ import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground,TextInpu
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Detaile({navigation}){
+   
+    
+    const { name } = navigation.state.params.item;
+    const { price } = navigation.state.params.item;
+    const { description } = navigation.state.params.item;
+    const { photos } = navigation.state.params.item;
+    const { avantage } = navigation.state.params.item;
+
+   
+
+
+    const list = () => {
+        return avantage.map(obj => {
+
+          return (
+            <View key={obj.id} style={styles.divContenteIcone}>
+                <Image style={styles.icon} source={obj.icon}/>
+            <Text style={styles.textIcon}>{obj.point_fort}</Text>
+            </View>
+          );
+        });
+      };
 
     const  handlessPressBack = () => {
         navigation.goBack()
@@ -35,7 +57,7 @@ export default function Detaile({navigation}){
 
         </View>
         </View>
-        <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
+        <Image source={{uri: photos}}
        style={styles.imghead} />
 
 
@@ -43,20 +65,17 @@ export default function Detaile({navigation}){
 
             <View style={styles.titre}>
 
-            <Text style={styles.h1}>Hotêl Dina</Text>
-            <Text style={styles.price}>100€/nuit</Text>
+            <Text style={styles.h1}>{name}</Text>
+            <Text style={styles.price}>{price}€/nuit</Text>
 
             </View>
 
         
             <Text> <Icon name="star" size={25} color="#f2da15" style={styles.iconhead} /> 4.5 (16 avis)</Text>
-        
-      
 
                 <View style={styles.divDescription}>
 
-                <Text>
-                Situé à Saint-Denis, il se trouve à environ 1,3 km du musée d'histoire naturelle de la Réunion et à 2,8 km du parc de la Trinité.</Text>
+                <Text>{description}</Text>
 
 
                 
@@ -66,29 +85,10 @@ export default function Detaile({navigation}){
 
                 <View style={styles.divIcon}>
 
-                <View style={styles.divContenteIcone}>
-
-                <Image style={styles.icon} source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
-                <Text style={styles.textIcon}>Restaurant</Text>
-
-                </View>
+                {list()}
      
 
-                <View style={styles.divContenteIcone}>
-                <Image style={styles.icon} source={require('../../public/img/3d-fluency-football-player.png')}/>
-                <Text style={styles.textIcon}>Salle de sport</Text>
-                </View>
-
-                <View style={styles.divContenteIcone}>
-                <Image style={styles.icon} source={require('../../public/img/3d-fluency-pink-flower.png')}/>
-                <Text style={styles.textIcon}>Spa</Text>
-                </View>
-
-                <View style={styles.divContenteIcone}>
-                <Image style={styles.icon} source={require('../../public/img/3d-fluency-blue-car.png')}/>
-                <Text style={styles.textIcon}>Place de parking</Text>
-                </View>
-
+             
 
 
                 </View>
@@ -214,12 +214,12 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection:'row',
-        margin:1,
+       // margin:0,
       
     },
     textIcon:{
 
-        padding:4,
+        padding:5,
         fontSize:15,
     },
     divContenteIcone:{
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         alignContent:'center',
-        margin:10
+        margin:1
       },
      
 })   

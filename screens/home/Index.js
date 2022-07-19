@@ -1,141 +1,263 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView} from 'react-native';
+import {Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView,FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Indexstyles } from '../../styles/IndexStyles';
 export default function Index({navigation}) {
 
-  const  handlessPressDetail= () => {
-    navigation.navigate('Detaile')
+
+  //DATA JSON TEST
+
+  const DATA =[
+    {
+      id:'1',
+      name:'Hotêl Dina',
+      price:'230',
+      description:'Jolie hotel de st denis',
+      ville:'Saint-Denis',
+      categorie:'Hôtel',
+      photos:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1',
+      avantage:[
+        {
+          id:'1',
+          point_fort:'Restaurant',
+          icon:require("../../public/img/3d-fluency-spoon-and-knife.png")
+        },
+        {
+          id:'2',
+          point_fort:'Salle de sport',
+          icon:require("../../public/img/3d-fluency-football-player.png")
+        },
+        {
+          id:'3',
+          point_fort:'Spa',
+          icon:require("../../public/img/3d-fluency-pink-flower.png")
+        },
+        {
+          id:'4',
+          point_fort:'Place de parking',
+          icon:require("../../public/img/3d-fluency-blue-car.png")
+        },
+      ]
+
+    },
+    {
+      id:'2',
+      name:'Relais \n Hermitage',
+      price:'120',
+      description:'Hotel au bord de mer de st-gille',
+      ville:'Saint-Gilles',
+      categorie:'Hôtel',
+      photos:'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/32/05/320511_v6.jpeg',
+      avantage:[
+        {
+          id:'1',
+          point_fort:'Restaurant',
+          icon:require("../../public/img/3d-fluency-spoon-and-knife.png")
+        },
+        {
+          id:'2',
+          point_fort:'Place de parking',
+          icon:require("../../public/img/3d-fluency-blue-car.png")
+        },
+        {
+          id:'3',
+          point_fort:'Animation music',
+          icon:require("../../public/img/3d-fluency-music-note.png")
+        },
+      ]
+
+    },
+
+    {
+      id:'3',
+      name:'Saint-Alexi',
+      price:'320',
+      description:'Hotel 4* qui se trouve à la plage du Boucant',
+      ville:'Saint-Paul',
+      categorie:'Hôtel',
+      photos:'https://images.citybreak.com/image.aspx?ImageId=4571665',
+      avantage:[
+        {
+          id:'1',
+          point_fort:'Restaurant',
+          icon:require("../../public/img/3d-fluency-spoon-and-knife.png")
+        },
+        {
+          id:'2',
+          point_fort:'Place de parking',
+          icon:require("../../public/img/3d-fluency-blue-car.png")
+        },
+        {
+          id:'3',
+          point_fort:'Animation music',
+          icon:require("../../public/img/3d-fluency-music-note.png")
+        },
+        {
+          id:'4',
+          point_fort:'Salle de sport',
+          icon:require("../../public/img/3d-fluency-football-player.png")
+        },
+        {
+          id:'5',
+          point_fort:'Spa',
+          icon:require("../../public/img/3d-fluency-pink-flower.png")
+        },
+      ]
+
+    }
+  ]
+
+  const DATA_VILLE =[
+    {
+      id:'1',
+      name:'Tout'
+    },
+    {
+      id:'2',
+      name:'Saint-Denis'
+    },
+    {
+      id:'3',
+      name:'Saint-Paul'
+    },
+    {
+      id:'4',
+      name:'Saint-Gilles'
+    },
+    {
+      id:'5',
+      name:'Saint-André'
+    },
+    {
+      id:'6',
+      name:'Saint-Marie'
+    },
+  ]
+
+
+  const renderItem = ({item}) => {
+
+    return(
+
+      <View>
+        <TouchableOpacity 
+        onPress={() => {
+        navigation.navigate('Detaile',{item})
   
-    };  
+         }}>
+        <Image source={{uri: item.photos}}
+        style={Indexstyles.img} />
+        </TouchableOpacity>
+  
+
+
+        <View style={Indexstyles.divCard}>
+
+        <Text style={Indexstyles.textCardTop}> {item.ville}</Text>
+
+        <TouchableOpacity>
+        <Icon name="heart" size={30} color="#d43d35" style={Indexstyles.iconlike} />
+        </TouchableOpacity>
+
+      
+        <View style={Indexstyles.textContaireBotton}>
+        <Text style={Indexstyles.textCardBottom}>{item.name}</Text>
+        <Text style={Indexstyles.prix}>{item.price}€/nuit</Text>
+        </View>
+
+
+
+
+        </View>
+
+      
+      </View>
+    )
+
+  }
+
+  const renderItemVille = ({item}) => {
+
+    return(
+      <TouchableOpacity>
+      <Text style={Indexstyles.li}>{item.name} |</Text>
+      </TouchableOpacity>
+    )
+
+  }
+
+ 
   
     return (
-      <View style={styles.container}>
+      <View style={Indexstyles.container}>
 
-    <View style={styles.divBtnProfil}>
+    <View style={Indexstyles.divBtnProfil}>
       <TouchableOpacity >
             <Icon name="user" size={30} color="#000"  />
           </TouchableOpacity> 
       </View>
       
-      <Text style={styles.baseText}>
-        <Text style={styles.h1}>Rechercher votre destinations</Text>   {"\n"}   {"\n"}
+      <Text style={Indexstyles.baseText}>
+        <Text style={Indexstyles.h1}>Rechercher votre destinations</Text>   {"\n"}   {"\n"}
         <Text>Localiser les meilleur adresse à la Réunion</Text>
         {"\n"}
       </Text>
 
-      <TextInput style={styles.input}  placeholder='Recherche...'>
+      <TextInput style={Indexstyles.input}  placeholder='Recherche...'>
       <Icon name="search" size={20} color="#d43d35"  />
 
       </TextInput>
 
-      <View style={styles.ul}>
-      <ScrollView horizontal={true}>
+      <View style={Indexstyles.ul}>
 
-      <TouchableOpacity>
-      <Text style={styles.li}>Tout |</Text>
-      </TouchableOpacity>
-  
-     
 
-      </ScrollView>
+      <FlatList
+      
+      data={DATA_VILLE}
+      renderItem={renderItemVille}
+      keyExtractor={item => item.id}
+      horizontal={true}
+      
+      />
+
+
+      
 
       </View>
 
-      <View style={styles.bloc}>
-      <ScrollView horizontal={true}>
-
-       <View>
-       <TouchableOpacity onPress={handlessPressDetail}>
-       <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
-       style={styles.img} />
-       </TouchableOpacity>
-  
+      <View style={Indexstyles.bloc}>
 
 
-        <View style={styles.divCard}>
+      <FlatList
+      
+      data={DATA}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+      horizontal={true}
+      
+      
+      />
 
-        <Text style={styles.textCardTop}> Saint-Denis</Text>
-
-        <TouchableOpacity>
-        <Icon name="heart" size={30} color="#d43d35" style={styles.iconlike} />
-        </TouchableOpacity>
-
-     
-        <View style={styles.textContaireBotton}>
-        <Text style={styles.textCardBottom}>Hotêl Dina</Text>
-        <Text style={styles.prix}>210€/nuit</Text>
-        </View>
-
-
-
-
-        </View>
-
-
-
-
-
-
-       </View>
-
- 
-     
-
-       <View>
-       <Image source={{uri: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1'}}
-       style={styles.img} />
-
-
-        <View style={styles.divCard}>
-
-        <Text style={styles.textCardTop}> Saint-Denis</Text>
-
-        <TouchableOpacity>
-        <Icon name="heart" size={30} color="#d43d35" style={styles.iconlike} />
-        </TouchableOpacity>
-
-        <View style={styles.textContaireBotton}>
-        <Text style={styles.textCardBottom}>Hotêl Dina</Text>
-        <Text style={styles.prix}>210€/nuit</Text>
-        </View>
-         
-
-
-
-
-
-        </View>
-
-
-
-
-
-
-       </View>
-
-    
-       </ScrollView>
       </View>
 
 
 
      
 
-    <Text style={styles.h2}>Catégories</Text> 
+    <Text style={Indexstyles.h2}>Catégories</Text> 
 
 
-<View style={styles.divCat}>
+<View style={Indexstyles.divCat}>
 
-<View  style={styles.blocCat}>
+<View  style={Indexstyles.blocCat}>
 
 
       
 <TouchableOpacity>
 <Image
-style={styles.iconCat}
+style={Indexstyles.iconCat}
 source={require('../../public/img/3d-fluency-oak-tree.png')}/>
-<Text style={styles.textCat}>
+<Text style={Indexstyles.textCat}>
 Nature
 </Text>
 </TouchableOpacity>  
@@ -143,18 +265,18 @@ Nature
 
 <TouchableOpacity>
 <Image
-style={[styles.iconCat,{marginLeft:36}]}
+style={[Indexstyles.iconCat,{marginLeft:36}]}
 source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
-<Text style={styles.textCat}>
+<Text style={Indexstyles.textCat}>
 Restaurants
 </Text>
 </TouchableOpacity>
 
 <TouchableOpacity>
 <Image
-style={styles.iconCat}
+style={Indexstyles.iconCat}
 source={require('../../public/img/3d-fluency-orange-suitcase.png')}/>
-<Text style={styles.textCat}>
+<Text style={Indexstyles.textCat}>
 Hotêls 
 </Text>
 </TouchableOpacity>
@@ -171,146 +293,3 @@ Hotêls
     );
   
 }
-
-const styles = StyleSheet.create({
-    container:{
-        paddingTop: 30,
-        margin:10,
-        alignItems:"left",
-        //justifyContent: 'center',
-    },
-    divBtnProfil:{
-        display:'flex',
-        width: 358,
-        flexDirection:'row-reverse',
-        bottom:20,
-        width: '100%',
-    },
-    
-    baseText: {
-        fontFamily: "Verdana",
-       textAlign:'left'
-
-      },
-      h1:{
-          color:"#125386",
-          fontSize: 30,
-          fontWeight: "bold"
-      },
-      h2:{
-        color:"#125386",
-        fontSize: 20,
-        fontWeight: "bold"
-      },
-      input:{
-
-        backgroundColor:'#fafafa',
-        height:'4%',
-        margin:10,
-        width:'90%',
-        borderRadius:40,
-        padding:30,
-        color:'black',
-
-        
-    },
-    ul:{
-
-      display:'flex',
-      flexDirection:'row',
-      padding:10,
-      alignItems:'center',
-    },
-    li:{
-      paddingRight:10
-    },
-    bloc:{
-
-      display:'flex',
-      flexDirection:'row',
-      padding:10,
-      alignItems:'center',
-    },
-    img:{
-      width:200,
-      height:180,
-      borderRadius:10,
-      marginRight:25
-    },
-    divCard:{
-      display:'flex',
-      flexDirection:'row',
-      alignItems:'center'
-    },
-    textCardTop:{
-      position: 'relative',
-      bottom:170,
-      left:0,
-      color:"#fff",
-      fontWeight:'bold',
-    },
-    iconlike:{
-      position: 'relative',
-      bottom:170,
-      left:70
-    },
-    textCardBottom:{
-      position: 'relative',
-      bottom:30,
-      right:90,
-      color:"#fff",
-      fontWeight:'bold',
-
-    },
-    prix:{
-      position: 'relative',
-      bottom:30,
-      right:40,
-      color:'#d43d35',
-      fontWeight:'bold',
-      backgroundColor:'#FFF'
-      
-
-    },
-    textContaireBotton:{
-      display:'flex',
-      flexDirection:'row',
-      alignItems:'center',
-      marginLeft:-20
-    },
-    iconCat:{
-      width:60,
-      height:60,
-      marginLeft:30,
-
-      
-    
-    },
-    blocCat:{
-      display:'flex',
-      flexDirection:'row',
-      alignItems:'center',
-      
-    },
-    blocTextCat:{
-      flexDirection:'row',
-      textAlign:'center',
-    },
-    textCat:{
-      display:'flex',
-      textAlign:'center',
-      marginLeft:20,
-      paddingLeft:10
-
-    },
-    divCat:{
-      display:'flex',
-      alignContent:'center',
-      alignItems:'center',
-      textAlign:'center',
-      display:'flex',
-      marginLeft:35,
-      marginTop:10
-      
-    }
-});
