@@ -38,7 +38,7 @@ export const Indexstyles = StyleSheet.create({
         margin:10,
         width:'90%',
         borderRadius:40,
-        padding:30,
+        padding:20,
         color:'black',
 
         
@@ -57,7 +57,7 @@ export const Indexstyles = StyleSheet.create({
 
       display:'flex',
       flexDirection:'row',
-      padding:10,
+      padding:2,
       alignItems:'center',
     },
     img:{
@@ -142,7 +142,7 @@ export const Indexstyles = StyleSheet.create({
       textAlign:'center',
       display:'flex',
       marginLeft:35,
-      marginTop:10
+      marginTop:1
       
     }
 });

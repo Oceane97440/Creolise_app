@@ -1,8 +1,11 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeStackNav from './routes/HomeStackNav';
+import { NavigationContainer } from '@react-navigation/native';
 
-const Stack = createStackNavigator();
+import HomeStackNav from './routes/HomeStackNav';
+import MyTabs from "./routes/BottonTabNav";
+
 
 export default function App() {
 
@@ -10,7 +13,11 @@ export default function App() {
 
   return (
 
-   <HomeStackNav/>
+    <NavigationContainer style={styles.container}>
+
+      <HomeStackNav/>
+
+    </NavigationContainer>
 
    
   );
@@ -19,3 +26,13 @@ export default function App() {
 
 }
 
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffff',
+    //alignItems: 'left',
+    // justifyContent: '',
+  }
+
+});
