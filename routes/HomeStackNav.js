@@ -1,7 +1,5 @@
 import React from "react";
-import { StyleSheet} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Index from "../screens/home/Index";
 import Detaile from "../screens/home/Detail";
 import MyTabs from "./BottonTabNav";
 

@@ -179,13 +179,16 @@ export default function Index({navigation}) {
   const renderItemVille = ({item}) => {
 
     return(
-      <TouchableOpacity>
+      <TouchableOpacity key={item.name} onPress={test}>
       <Text style={Indexstyles.li}>{item.name} |</Text>
       </TouchableOpacity>
     )
 
   }
 
+  const test = (e)=>{
+    console.log(e)
+  }
  
   
     return (

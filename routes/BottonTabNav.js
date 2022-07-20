@@ -2,7 +2,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favoris from '../screens/users/Favoris';
 import Location from '../screens/users/Location';
 import Index from '../screens/home/Index';
-import HomeStackNav from './HomeStackNav';
 
 const Tab = createBottomTabNavigator();
 
