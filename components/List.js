@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView,FlatList} from 'react-native';
+import {Text, View ,Image,TouchableOpacity,Pressable,TextInput,ScrollView,FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../styles/IndexStyles';
 
@@ -20,7 +20,8 @@ const List =({item,navigation})=> {
 
         break;
     }
-   
+
+  
     if (item) {
         return(
 
@@ -42,9 +43,7 @@ const List =({item,navigation})=> {
       
               <Text style={Indexstyles.textCardTop}> {item.ville}</Text>
       
-              <TouchableOpacity>
-              <Icon name="heart" size={30} color="#d43d35" style={Indexstyles.iconlike} />
-              </TouchableOpacity>
+              <Icon name="heart" size={30} color='#d43d35' style={Indexstyles.iconlike} />
       
             
               <Text style={Indexstyles.textCardBottom}>{item.name}</Text>

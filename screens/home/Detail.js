@@ -1,20 +1,43 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Detaile({navigation,route}){
 
 
-   
+    const [like, setLike] = useState('#000');
+    const  onClicLike = () => {
+
+        if (like === '#d43d35') {
+            setLike('#000')
+
+        }else{
+            setLike('#d43d35')
+        }
+    };
     
     const { name } = route.params.item;
     const { price } = route.params.item;
+    const { categorie } = route.params.item;
     const { description } = route.params.item;
     const { photos } = route.params.item;
     const { avantage } = route.params.item;
  
    
+    switch (categorie) {
+        case "Hotels":
+            var string = "€/nuit"
+        break;
+        case "Restaurants":
+            var string = "€/plat"
+        break;
 
+        default:
+            var string = ""
+
+        break;
+    }
+   
 
     const list = () => {
         return avantage.map(obj => {
@@ -49,8 +72,8 @@ export default function Detaile({navigation,route}){
         </View> 
 
         <View style={styles.divIcon}>
-        <TouchableOpacity>
-        <Icon name="heart" size={30} color="#d43d35" style={styles.iconhead} />
+        <TouchableOpacity onPress={onClicLike}>
+        <Icon name="heart" size={30} color={like} style={styles.iconhead} />
         </TouchableOpacity>
 
         <TouchableOpacity>
@@ -68,7 +91,7 @@ export default function Detaile({navigation,route}){
             <View style={styles.titre}>
 
             <Text style={styles.h1}>{name}</Text>
-            <Text style={styles.price}>{price}€/nuit</Text>
+            <Text style={styles.price}>{price}{string}</Text>
 
             </View>
 
@@ -155,7 +178,7 @@ const styles = StyleSheet.create({
     },
     divIcon:{
    
-    float:'right'
+    float:'right',
     },
     iconhead:{
         padding:10,
@@ -217,6 +240,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection:'row',
        // margin:0,
+       marginBottom:5
       
     },
     textIcon:{
@@ -275,7 +299,9 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         alignContent:'center',
-        margin:1
+        position:'relative',
+        top:0,
+       
       },
      
 })   
