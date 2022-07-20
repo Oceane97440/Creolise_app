@@ -1,13 +1,11 @@
-import React from 'react';
+import React,{useState, useMemo} from 'react';
 import {Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView,FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../../styles/IndexStyles';
+import List from '../../components/List';
 export default function Index({navigation}) {
 
-
-  //DATA JSON TEST
-
-  const DATA =[
+  const [fullList, setFullList] = useState([
     {
       id:'1',
       name:'Hotêl Dina',
@@ -105,89 +103,26 @@ export default function Index({navigation}) {
       ]
 
     }
-  ]
+  ]);
 
-  const DATA_VILLE =[
-    {
-      id:'1',
-      name:'Tout'
-    },
-    {
-      id:'2',
-      name:'Saint-Denis'
-    },
-    {
-      id:'3',
-      name:'Saint-Paul'
-    },
-    {
-      id:'4',
-      name:'Saint-Gilles'
-    },
-    {
-      id:'5',
-      name:'Saint-André'
-    },
-    {
-      id:'6',
-      name:'Saint-Marie'
-    },
-  ]
+  const [villes, setVille] = useState('Tout')
 
 
-  const renderItem = ({item}) => {
 
-    return(
+  const filteredList = useMemo(
+    () => {
+      if (villes === 'Tout' ) return fullList
+      return fullList.filter(item => villes === item.ville)
+    },
+    [villes, fullList]
+  )
 
-      <View>
-        <TouchableOpacity 
-        onPress={() => {
-        navigation.navigate('Detaile',{item})
-  
-         }}>
-        <Image source={{uri: item.photos}}
-        style={Indexstyles.img} />
-        </TouchableOpacity>
+
   
 
+  const VilleSelected = (arg)=>{
 
-        <View style={Indexstyles.divCard}>
-
-        <Text style={Indexstyles.textCardTop}> {item.ville}</Text>
-
-        <TouchableOpacity>
-        <Icon name="heart" size={30} color="#d43d35" style={Indexstyles.iconlike} />
-        </TouchableOpacity>
-
-      
-        <View style={Indexstyles.textContaireBotton}>
-        <Text style={Indexstyles.textCardBottom}>{item.name}</Text>
-        <Text style={Indexstyles.prix}>{item.price}€/nuit</Text>
-        </View>
-
-
-
-
-        </View>
-
-      
-      </View>
-    )
-
-  }
-
-  const renderItemVille = ({item}) => {
-
-    return(
-      <TouchableOpacity key={item.name} onPress={test}>
-      <Text style={Indexstyles.li}>{item.name} |</Text>
-      </TouchableOpacity>
-    )
-
-  }
-
-  const test = (e)=>{
-    console.log(e)
+    setVille(arg)
   }
  
   
@@ -211,30 +146,43 @@ export default function Index({navigation}) {
 
       </TextInput>
 
+      <ScrollView>
+
       <View style={Indexstyles.ul}>
 
 
-      <FlatList
-      
-      data={DATA_VILLE}
-      renderItem={renderItemVille}
-      keyExtractor={item => item.id}
-      horizontal={true}
-      
-      />
+      <TouchableOpacity  onPress={()=>VilleSelected("Tout")}>
+      <Text style={Indexstyles.li}>Tout |</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity  onPress={()=>VilleSelected("Saint-Denis")}>
+      <Text style={Indexstyles.li}>Saint-Denis |</Text>
+      </TouchableOpacity>
 
 
-      
+      <TouchableOpacity  onPress={()=>VilleSelected("Saint-Paul")}>
+      <Text style={Indexstyles.li}>Saint-Paul |</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity  onPress={()=>VilleSelected("Saint-Gilles")}>
+      <Text style={Indexstyles.li}>Saint-Gilles |</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity  onPress={()=>VilleSelected("Saint-Marie")}>
+      <Text style={Indexstyles.li}>Saint-Marie |</Text>
+      </TouchableOpacity>
 
       </View>
 
-      <View style={Indexstyles.bloc}>
+      </ScrollView>
+      
 
+      <View style={Indexstyles.bloc}>
 
       <FlatList
       
-      data={DATA}
-      renderItem={renderItem}
+      data={filteredList}
+      renderItem={({item})=><List item={item}/>}
       keyExtractor={item => item.id}
       horizontal={true}
       
@@ -250,47 +198,47 @@ export default function Index({navigation}) {
     <Text style={Indexstyles.h2}>Catégories</Text> 
 
 
-<View style={Indexstyles.divCat}>
+  <View style={Indexstyles.divCat}>
 
-<View  style={Indexstyles.blocCat}>
-
-
-      
-<TouchableOpacity>
-<Image
-style={Indexstyles.iconCat}
-source={require('../../public/img/3d-fluency-oak-tree.png')}/>
-<Text style={Indexstyles.textCat}>
-Nature
-</Text>
-</TouchableOpacity>  
+  <View  style={Indexstyles.blocCat}>
 
 
-<TouchableOpacity>
-<Image
-style={[Indexstyles.iconCat,{marginLeft:36}]}
-source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
-<Text style={Indexstyles.textCat}>
-Restaurants
-</Text>
-</TouchableOpacity>
-
-<TouchableOpacity>
-<Image
-style={Indexstyles.iconCat}
-source={require('../../public/img/3d-fluency-orange-suitcase.png')}/>
-<Text style={Indexstyles.textCat}>
-Hotêls 
-</Text>
-</TouchableOpacity>
-
-</View>
+          
+    <TouchableOpacity>
+    <Image
+    style={Indexstyles.iconCat}
+    source={require('../../public/img/3d-fluency-oak-tree.png')}/>
+    <Text style={Indexstyles.textCat}>
+    Nature
+    </Text>
+    </TouchableOpacity>  
 
 
+    <TouchableOpacity>
+    <Image
+    style={[Indexstyles.iconCat,{marginLeft:36}]}
+    source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
+    <Text style={Indexstyles.textCat}>
+    Restaurants
+    </Text>
+    </TouchableOpacity>
 
-</View>
+    <TouchableOpacity>
+    <Image
+    style={Indexstyles.iconCat}
+    source={require('../../public/img/3d-fluency-orange-suitcase.png')}/>
+    <Text style={Indexstyles.textCat}>
+    Hotêls 
+    </Text>
+    </TouchableOpacity>
 
-</View>
+    </View>
+
+
+
+    </View>
+
+  </View>
 
 
     );
