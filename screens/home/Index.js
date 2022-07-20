@@ -12,7 +12,7 @@ export default function Index({navigation}) {
       price:'230',
       description:'Jolie hotel de st denis',
       ville:'Saint-Denis',
-      categorie:'Hôtel',
+      categorie:'Hotels',
       photos:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1',
       avantage:[
         {
@@ -44,7 +44,7 @@ export default function Index({navigation}) {
       price:'120',
       description:'Hotel au bord de mer de st-gille',
       ville:'Saint-Gilles',
-      categorie:'Hôtel',
+      categorie:'Hotels',
       photos:'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/32/05/320511_v6.jpeg',
       avantage:[
         {
@@ -68,11 +68,11 @@ export default function Index({navigation}) {
 
     {
       id:'3',
-      name:'Saint-Alexi',
+      name:'Saint-Alexie',
       price:'320',
       description:'Hotel 4* qui se trouve à la plage du Boucant',
       ville:'Saint-Paul',
-      categorie:'Hôtel',
+      categorie:'Hotels',
       photos:'https://images.citybreak.com/image.aspx?ImageId=4571665',
       avantage:[
         {
@@ -102,19 +102,77 @@ export default function Index({navigation}) {
         },
       ]
 
-    }
+    },
+    {
+      id:'4',
+      name:'Saint-Hubert',
+      price:'20',
+      description:'Brasserie',
+      ville:'Saint-Denis',
+      categorie:'Restaurants',
+      photos:'https://passtime-media.s3.eu-west-3.amazonaws.com/SPs3comf4pP3vUxu6AhnCHNm',
+      avantage:[
+        {
+          id:'1',
+          point_fort:'Restaurant',
+          icon:require("../../public/img/3d-fluency-spoon-and-knife.png")
+        },
+        {
+          id:'2',
+          point_fort:'Place de parking',
+          icon:require("../../public/img/3d-fluency-blue-car.png")
+        },
+        {
+          id:'3',
+          point_fort:'Animation music',
+          icon:require("../../public/img/3d-fluency-music-note.png")
+        },
+      
+      ]
+
+    },
+    {
+      id:'5',
+      name:'Forêt \n Providence',
+      price:'',
+      description:'Randonner en plein nature au coeur de St-denis',
+      ville:'Saint-Denis',
+      categorie:'Nature',
+      photos:'http://medias.tourism-system.fr/3/5/158493_la_providence-1.jpg',
+      avantage:[
+       
+        {
+          id:'1',
+          point_fort:'Place de parking',
+          icon:require("../../public/img/3d-fluency-blue-car.png")
+        }
+      ]
+
+    },
   ]);
 
   const [villes, setVille] = useState('Tout')
+  const [cat, setCat] = useState('Hotels')
 
+  console.log(cat)
 
 
   const filteredList = useMemo(
     () => {
-      if (villes === 'Tout' ) return fullList
-      return fullList.filter(item => villes === item.ville)
+      if (villes === 'Tout') return fullList
+
+      
+        return fullList
+         .filter(item => villes === item.ville)
+         .filter(item => cat === item.categorie)
+
+      
+    
+
     },
-    [villes, fullList]
+    [cat,villes, fullList],
+
+      
   )
 
 
@@ -123,6 +181,11 @@ export default function Index({navigation}) {
   const VilleSelected = (arg)=>{
 
     setVille(arg)
+  }
+
+
+  const CatSelected = (categorie)=>{
+      setCat(categorie)
   }
  
   
@@ -182,7 +245,7 @@ export default function Index({navigation}) {
       <FlatList
       
       data={filteredList}
-      renderItem={({item})=><List item={item}/>}
+      renderItem={({item})=><List item={item} navigation={navigation}/>}
       keyExtractor={item => item.id}
       horizontal={true}
       
@@ -195,16 +258,16 @@ export default function Index({navigation}) {
 
      
 
-    <Text style={Indexstyles.h2}>Catégories</Text> 
 
 
   <View style={Indexstyles.divCat}>
+  <Text style={Indexstyles.h2}>Catégories</Text> 
 
   <View  style={Indexstyles.blocCat}>
 
 
           
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>CatSelected("Nature")}>
     <Image
     style={Indexstyles.iconCat}
     source={require('../../public/img/3d-fluency-oak-tree.png')}/>
@@ -214,7 +277,7 @@ export default function Index({navigation}) {
     </TouchableOpacity>  
 
 
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>CatSelected("Restaurants")}>
     <Image
     style={[Indexstyles.iconCat,{marginLeft:36}]}
     source={require('../../public/img/3d-fluency-spoon-and-knife.png')}/>
@@ -223,7 +286,7 @@ export default function Index({navigation}) {
     </Text>
     </TouchableOpacity>
 
-    <TouchableOpacity>
+    <TouchableOpacity onPress={()=>CatSelected("Hotels")}>
     <Image
     style={Indexstyles.iconCat}
     source={require('../../public/img/3d-fluency-orange-suitcase.png')}/>

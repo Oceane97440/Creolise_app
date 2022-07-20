@@ -3,15 +3,29 @@ import {Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,ScrollView,
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../styles/IndexStyles';
 
-const List =({item})=> {
+const List =({item,navigation})=> {
 
 
+
+    switch (item.categorie) {
+        case "Hotels":
+            var string = "€/nuit"
+        break;
+        case "Restaurants":
+            var string = "€/plat"
+        break;
+
+        default:
+            var string = ""
+
+        break;
+    }
    
-   
+    if (item) {
         return(
 
             
-            <View>
+            <View style={{marginRight:-15}}>
               
               <TouchableOpacity 
               onPress={() => {
@@ -33,11 +47,8 @@ const List =({item})=> {
               </TouchableOpacity>
       
             
-              <View style={Indexstyles.textContaireBotton}>
               <Text style={Indexstyles.textCardBottom}>{item.name}</Text>
-              <Text style={Indexstyles.prix}>{item.price}€/nuit</Text>
-              </View>
-      
+              <Text style={Indexstyles.prix}>{item.price}{string}</Text>
       
       
       
@@ -46,6 +57,8 @@ const List =({item})=> {
             
             </View>
         )
+    }
+        
     
       
 

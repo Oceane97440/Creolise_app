@@ -29,7 +29,8 @@ export const Indexstyles = StyleSheet.create({
       h2:{
         color:"#125386",
         fontSize: 20,
-        fontWeight: "bold"
+        fontWeight: "bold",
+
       },
       input:{
 
@@ -61,15 +62,15 @@ export const Indexstyles = StyleSheet.create({
       alignItems:'center',
     },
     img:{
-      width:200,
+      width:210,
       height:180,
       borderRadius:10,
-      marginRight:25
+
     },
     divCard:{
       display:'flex',
       flexDirection:'row',
-      alignItems:'center'
+      alignItems:'center',
     },
     textCardTop:{
       position: 'relative',
@@ -86,21 +87,30 @@ export const Indexstyles = StyleSheet.create({
     textCardBottom:{
       position: 'relative',
       bottom:40,
-      right:90,
+      left:-100,
       color:"#fff",
       fontWeight:'bold',
-      paddingBottom:5,
-      marginLeft:3
+      //paddingBottom:5,
+      //marginLeft:3
 
     },
     prix:{
       position: 'relative',
       bottom:40,
-      right:40,
+      left:-60,
       color:'#d43d35',
       fontWeight:'bold',
       backgroundColor:'#FFF',
-      marginRight:1
+      marginRight:1,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.36,
+      shadowRadius: 6.68,
+      
+      elevation: 11,
       
 
     },
@@ -108,7 +118,7 @@ export const Indexstyles = StyleSheet.create({
       display:'flex',
       flexDirection:'row',
       alignItems:'center',
-      marginLeft:-20
+      //marginLeft:0
     },
     iconCat:{
       width:60,
@@ -122,6 +132,8 @@ export const Indexstyles = StyleSheet.create({
       display:'flex',
       flexDirection:'row',
       alignItems:'center',
+      marginLeft:35,
+
       
     },
     blocTextCat:{
@@ -137,12 +149,7 @@ export const Indexstyles = StyleSheet.create({
     },
     divCat:{
       display:'flex',
-      alignContent:'center',
-      alignItems:'center',
-      textAlign:'center',
-      display:'flex',
-      marginLeft:35,
-      marginTop:1
-      
+      marginTop:1,
+    
     }
 });
