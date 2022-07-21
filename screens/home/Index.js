@@ -154,7 +154,6 @@ export default function Index({navigation}) {
   const [villes, setVille] = useState('Tout')
   const [cat, setCat] = useState('Hotels')
 
-  console.log(cat)
 
 
   const filteredList = useMemo(

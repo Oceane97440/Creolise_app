@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, Image, TouchableOpacity, ImageBackground, TextInput, FlatList, StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
+import ListAdresse from '../../components/ListAdresse';
 
-const Geolocalisation = () => {
+const Geolocalisation = ({navigation}) => {
 
-  const [fullList, setFullList] = useState([
+  const Data =[
     {
       id: '1',
       name: 'Hotêl Dina',
@@ -92,9 +93,41 @@ const Geolocalisation = () => {
       ]
 
     },
-  ]);
+    {
+      id:'4',
+      name:'Relais \n Hermitage',
+      price:'120',
+      description:'Hotel au bord de mer de st-gille',
+      ville:'Saint-Gilles',
+      categorie:'Hotels',
+      latitude: "-21.076864250430617",
+      longitude: "55.22221225481496",
+      photos:'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/32/05/320511_v6.jpeg',
+      avantage:[
+        {
+          id:'1',
+          point_fort:'Restaurant',
+          icon:require("../../public/img/3d-fluency-spoon-and-knife.png")
+        },
+        {
+          id:'2',
+          point_fort:'Place de parking',
+          icon:require("../../public/img/3d-fluency-blue-car.png")
+        },
+        {
+          id:'3',
+          point_fort:'Animation music',
+          icon:require("../../public/img/3d-fluency-music-note.png")
+        },
+      ]
 
-  const [geodata, setGeodata] = useState(0);
+    },
+  ]
+
+  const [geodata, setGeodata] = useState('0');
+
+  const [listAdresse, setListAdresse] = useState('0');
+
 
   useEffect(() => {
     (async () => {
@@ -123,22 +156,31 @@ const Geolocalisation = () => {
   var latitude = geodata[0]
   var logitude = geodata[1]
 
+  const data_location =[]
 
+  Data.map(obj => {
+    var endLatitude = obj.latitude
+    var endLongitude = obj.longitude
   
-  var endLatitude = -20.876211767943236
-  var endLongitude = 55.45515146403774
+    var theta = logitude - endLongitude;
+    var dist = Math.sin(deg2rad(latitude))
+    * Math.sin(deg2rad(endLatitude))
+    + Math.cos(deg2rad(latitude))
+    * Math.cos(deg2rad(endLatitude))
+    * Math.cos(deg2rad(theta));
+    dist = Math.acos(dist);
+    dist = rad2deg(dist);
+    dist = dist * 60 * 1.1515;
+  
 
-  var theta = logitude - endLongitude;
-  var dist = Math.sin(deg2rad(latitude))
-  * Math.sin(deg2rad(endLatitude))
-  + Math.cos(deg2rad(latitude))
-  * Math.cos(deg2rad(endLatitude))
-  * Math.cos(deg2rad(theta));
-  dist = Math.acos(dist);
-  dist = rad2deg(dist);
-  dist = dist * 60 * 1.1515;
+    if (dist<=10) {
+      console.log("Distance :" + dist)
 
-  console.log("Distance :" + dist)
+      data_location.push(obj)
+    }
+
+  });
+
 
 
   function rad2deg(dist) {
@@ -153,28 +195,18 @@ const Geolocalisation = () => {
 
   return (
     <View style={styles.container}>
-      <Text>{geodata}</Text>
       <View style={styles.divHead}>
         <Text style={styles.h1}>Vos adresses localisées </Text>
 
-        <View style={styles.divList}>
-          <Image source={{ uri: "https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/32/05/320511_v6.jpeg" }}
-            style={styles.img} />
-
-          <View style={styles.divText}>
-            <View>
-              <Text style={styles.h2}>Saint-Hubert</Text>
-              <Text >Restaurant</Text>
-            </View>
-
-
-            <Text style={styles.price}>20€/plat</Text>
-
-
-          </View>
-
-
-        </View>
+        <FlatList 
+      
+      data={data_location}
+      renderItem={({item})=><ListAdresse item={item} navigation={navigation}/>}
+      keyExtractor={item => item.id}
+      horizontal={false}
+      
+      
+      />
 
       </View>
     </View>
@@ -195,39 +227,11 @@ const styles = StyleSheet.create({
   h1: {
     color: "#125386",
     fontSize: 26,
-    fontWeight: "bold"
-  },
-  divList: {
-    marginTop: 10,
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  img: {
-    width: '100%',
-    height: 210,
-    borderRadius: 20,
-    resizeMode: 'center',
-
-  },
-  divText: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: 10,
-    alignContent: 'center',
-    alignItems: 'center'
-  },
-  h2: {
-    color: "#000",
-    fontSize: 25,
     fontWeight: "bold",
+    margin:1
   },
-  price: {
-    color: '#d43d35',
-    fontWeight: 'bold',
-    fontSize: 25,
-
-  },
+  
+  
 })
 
 
