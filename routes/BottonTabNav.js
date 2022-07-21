@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favoris from '../screens/users/Favoris';
-import Location from '../screens/users/Location';
+import Geolocalisation from '../screens/users/Location';
 import Index from '../screens/home/Index';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -14,7 +14,7 @@ function MyTabs() {
         <Tab.Screen name="Accueil" component={Index}   options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"home"} color={color} size={size} />)
                 }}/>
-        <Tab.Screen name="Adresse" component={Location} options={{
+        <Tab.Screen name="Adresse" component={Geolocalisation} options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"location-arrow"} color={color} size={size} />)
                 }}/>
         <Tab.Screen name="Favoris" component={Favoris} options={{

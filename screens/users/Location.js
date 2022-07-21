@@ -1,11 +1,40 @@
-import React, { Component } from 'react';
+import React, { useEffect,useState } from 'react';
 import {Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,FlatList,StyleSheet} from 'react-native';
+import * as Location from 'expo-location';
 
-const Location = ()=> {
+const Geolocalisation = ()=> {
 
+  const [geodata, setGeodata] = useState(0);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+
+      if (status !== 'granted') {
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      getApi(location);
+    })();
+  }, []);
+
+  const getApi = async (location) => {
+    try {
+      //Endpoint API avec la clès api + latitude et longitude
+      console.log(location);
+      setGeodata([location.coords.latitude,location.coords.longitude])
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+ 
 
   return (
     <View style={styles.container}>
+      <Text>{geodata}</Text>
       <View style={styles.divHead}>
       <Text style={styles.h1}>Vos adresses localisées </Text>
 
@@ -83,4 +112,4 @@ price:{
 })
 
 
-export default Location;
+export default Geolocalisation;
