@@ -174,7 +174,6 @@ const Geolocalisation = ({navigation}) => {
   
 
     if (dist<=10) {
-      console.log("Distance :" + dist)
 
       data_location.push(obj)
     }
