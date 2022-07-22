@@ -1,11 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Text, View ,Image,TouchableOpacity,Pressable,TouchableHighlight,TextInput,ScrollView,FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../styles/IndexStyles';
 import { addItem } from '../database/db';
 const List =({item,navigation})=> {
-
-    
 
 
     switch (item.categorie) {
@@ -22,10 +20,10 @@ const List =({item,navigation})=> {
         break;
     }
 
-  const addItemFavoris = async(id,statut)=>{
+  const addItemFavoris = async(id,name,photos,price,categorie,statut)=>{
     try {
-       const dbinsertData = await addItem(id,statut)
-        console.log(dbinsertData)
+       const dbinsertData = await addItem(id,name,photos,price,categorie,statut)
+       // console.log(dbinsertData)
     } catch (error) {
         console.log(error)
         
@@ -33,9 +31,18 @@ const List =({item,navigation})=> {
 
   }
 
-   const handlePressLike = (id,statut)=>{
-    console.log(id,statut)
-     addItemFavoris(id,statut)
+   const handlePressLike = (item,statut)=>{
+    const id = item.id
+    const name = item.name
+    const photos = item.photos
+    const price = item.price
+    const categorie = item.categorie
+
+    console.log(item)
+    console.log(statut)
+
+    
+    addItemFavoris(id,name,photos,price,categorie,statut)
    }
 
     if (item) {
@@ -59,7 +66,7 @@ const List =({item,navigation})=> {
                
               <Text style={Indexstyles.textCardTop}> {item.ville}</Text>
       
-              <TouchableOpacity style={Indexstyles.iconlike} onPress={()=>handlePressLike(item.id,true)}>
+              <TouchableOpacity style={Indexstyles.iconlike} onPress={()=>handlePressLike(item,true)}>
                 <Icon name="heart" size={30} color='#d43d35' />
               </TouchableOpacity>
 

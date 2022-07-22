@@ -5,7 +5,7 @@ export const initSqlite = () => {
 
     const initPromise = new Promise((resolve, reject) => {
         db.transaction(tx => {
-            tx.executeSql("create table if not exists favoris (id integer primary key  not null, id_item init ,is_favorie boolean value false);",
+            tx.executeSql("create table if not exists favoris (id integer primary key  not null, item_id text ,item_name text,item_photos text,item_price num,item_categorie text,is_favorie boolean value false);",
                 [],
                 () => {
 
@@ -25,15 +25,14 @@ export const initSqlite = () => {
 
 //insert item dans table des favorie
 
-export const addItem = (id_item,is_favorie) => {
+export const addItem = (id,name,photos,price,categorie,statut) => {
 
-    console.log('db data',id_item,is_favorie)
 
     const insertFavoris = new Promise((resolve, reject) => {
         db.transaction(tx => {
-            tx.executeSql("INSERT INTO favoris (id_item,is_favorie) VALUES(?,?);",
-                [id_item,is_favorie],
-                (_,result) => {
+            tx.executeSql("INSERT INTO favoris (item_id,item_name,item_photos,item_price,item_categorie,is_favorie) VALUES(?,?,?,?,?,?);",
+                [id,name,photos,price,categorie,statut],
+                (_, result) => {
 
                     resolve(result)
                 },
@@ -49,3 +48,25 @@ export const addItem = (id_item,is_favorie) => {
     return insertFavoris
 }
 
+//findAll favorie true
+export const selectAllItem = async() => {
+
+
+    const findAllFavoris = new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql("SELECT * from favoris WHERE is_favorie=1",
+                [],
+                (_, result) => {
+                    resolve(result)
+                },
+                (_, error) => {
+
+                    reject(error)
+
+                }
+            )
+        })
+    })
+
+    return await findAllFavoris
+}

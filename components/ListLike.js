@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Image, TouchableOpacity, ImageBackground, TextInput, FlatList, StyleSheet } from 'react-native';
 
-const ListAdresse = ({ item, navigation }) => {
+const ListLike = ({ item, navigation }) => {
 
 
-    switch (item.categorie) {
+
+   switch (item.item_categorie) {
         case "Hotels":
             var string = "€/nuit"
             break;
@@ -28,18 +29,18 @@ const ListAdresse = ({ item, navigation }) => {
                         navigation.navigate('Detaile', { item })
 
                     }}>
-                    <Image source={{ uri: item.photos }}
+                    <Image source={{ uri: item.item_photos }}
                         style={styles.img} />
                 </TouchableOpacity>
 
                 <View style={styles.divText}>
                     <View>
-                        <Text style={styles.h2}>{item.name}</Text>
-                        <Text >{item.categorie}</Text>
+                        <Text style={styles.h2}>{item.item_name}</Text>
+                        <Text >{item.item_categorie}</Text>
                     </View>
 
 
-                    <Text style={styles.price}>{item.price}{string}</Text>
+                    <Text style={styles.price}>{item.item_price}{string}</Text>
 
 
                 </View>
@@ -48,7 +49,7 @@ const ListAdresse = ({ item, navigation }) => {
             </View>
         </View>
     );
-
+   
 }
 
 
@@ -88,4 +89,4 @@ const styles = StyleSheet.create({
 
 
 
-export default ListAdresse
+export default ListLike

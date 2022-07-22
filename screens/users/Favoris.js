@@ -1,87 +1,83 @@
-import React, { Component } from 'react';
-import {Text, View ,Image,TouchableOpacity,ImageBackground,TextInput,FlatList,StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, Image, TouchableOpacity, ImageBackground, TextInput, FlatList, StyleSheet } from 'react-native';
+import { selectAllItem } from '../../database/db';
+import ListLike from '../../components/ListLike';
 
-const Favoris=()=> {
- 
-    return (
-      <View style={styles.container}>
-        <View style={styles.divHead}>
+const Favoris = ({ navigation }) => {
+  const [dataFavoris, setdataFavoris] = useState([]);
+
+  const fetchData = async () => {
+
+    try {
+      const itemData = await selectAllItem()
+       setdataFavoris(itemData.rows._array)
+    } catch (error) {
+      console.log(error)
+
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [dataFavoris]);
+
+  const functionMap = () => {
+
+    console.log(dataFavoris)
+
+    return dataFavoris.map((element) => {
+      return (
+        <View key={element.id} style={{ margin: 10 }}>
+          <Text>{element.item_name}</Text>
+        </View>
+      );
+    });
+  };
+
+
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.divHead}>
         <Text style={styles.h1}>Vos Favoris </Text>
 
-        <View style={styles.divList}>
-        <Image source={{uri: "https://passtime-media.s3.eu-west-3.amazonaws.com/SPs3comf4pP3vUxu6AhnCHNm"}}
-              style={styles.img} />
 
-         <View style={styles.divText}>   
-           <View>
-           <Text style={styles.h2}>Saint-Hubert</Text>
-            <Text >Restaurant</Text>
-           </View>
-      
+        <FlatList
 
-          <Text style={styles.price}>20€/plat</Text>
+          data={dataFavoris}
+          renderItem={({ item }) => <ListLike item={item} navigation={navigation} />}
+          keyExtractor={item => item.id}
+          horizontal={false}
 
-        
-        </View>     
 
-  
-        </View>
-        
-        </View>
+        />
+
       </View>
-    );
-  
+    </View>
+  );
+
+
+
+
 }
 
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     paddingTop: 30,
-    margin:10,
-    alignItems:"left",
+    margin: 10,
+    alignItems: "left",
   },
-  divHead:{
-    display:'flex',
+  divHead: {
+    display: 'flex',
     width: '100%',
-},
-h1:{
-  color:"#125386",
-  fontSize: 26,
-  fontWeight: "bold"
-},
-divList:{
-  marginTop:10,
-  display:'flex',
-  flexDirection:'column'
-},
-img:{
-  width:'100%',
-  height:210,
-  borderRadius:20,
-  resizeMode: 'center',
-
-},
-divText:{
-  display:'flex',
-  flexDirection:'row',
-  justifyContent:'space-between',
-  margin:10,
-  alignContent:'center',
-  alignItems:'center'
-},
-h2:{
-  color:"#000",
-  fontSize: 25,
-  fontWeight: "bold",
-},
-price:{
-  color:'#d43d35',
-  fontWeight:'bold',
-  fontSize: 25,
-
-},
+  },
+  h1: {
+    color: "#125386",
+    fontSize: 26,
+    fontWeight: "bold"
+  }
 })
-
 
 
 

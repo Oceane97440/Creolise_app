@@ -126,7 +126,7 @@ const Geolocalisation = ({navigation}) => {
 
   const [geodata, setGeodata] = useState('0');
 
-  const [listAdresse, setListAdresse] = useState('0');
+  const [listAdresse, setListAdresse] = useState([]);
 
 
   useEffect(() => {
