@@ -82,8 +82,13 @@ export const Indexstyles = StyleSheet.create({
     iconlike:{
       position: 'relative',
       bottom:170,
-      left:70
+      left:70,
+      //backgroundColor:'#000',
+      width:40,
+      height: 30,
+      alignItems:'center'
     },
+    
     textCardBottom:{
       position: 'relative',
       bottom:40,

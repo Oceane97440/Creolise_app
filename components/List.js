@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
-import {Text, View ,Image,TouchableOpacity,Pressable,TextInput,ScrollView,FlatList} from 'react-native';
+import {Text, View ,Image,TouchableOpacity,Pressable,TouchableHighlight,TextInput,ScrollView,FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../styles/IndexStyles';
-
+import { addItem } from '../database/db';
 const List =({item,navigation})=> {
 
+    
 
 
     switch (item.categorie) {
@@ -21,7 +22,22 @@ const List =({item,navigation})=> {
         break;
     }
 
-  
+  const addItemFavoris = async(id,statut)=>{
+    try {
+       const dbinsertData = await addItem(id,statut)
+        console.log(dbinsertData)
+    } catch (error) {
+        console.log(error)
+        
+    }
+
+  }
+
+   const handlePressLike = (id,statut)=>{
+    console.log(id,statut)
+     addItemFavoris(id,statut)
+   }
+
     if (item) {
         return(
 
@@ -40,10 +56,13 @@ const List =({item,navigation})=> {
       
       
               <View style={Indexstyles.divCard}>
-      
+               
               <Text style={Indexstyles.textCardTop}> {item.ville}</Text>
       
-              <Icon name="heart" size={30} color='#d43d35' style={Indexstyles.iconlike} />
+              <TouchableOpacity style={Indexstyles.iconlike} onPress={()=>handlePressLike(item.id,true)}>
+                <Icon name="heart" size={30} color='#d43d35' />
+              </TouchableOpacity>
+
       
             
               <Text style={Indexstyles.textCardBottom}>{item.name}</Text>
