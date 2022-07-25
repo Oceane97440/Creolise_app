@@ -9,7 +9,7 @@ export default function Login({navigation}) {
   
     };  
     const  handlessPressHome= () => {
-      navigation.navigate('Index')
+      navigation.navigate('Home')
     
       };  
 

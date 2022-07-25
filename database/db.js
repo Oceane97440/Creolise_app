@@ -70,3 +70,50 @@ export const selectAllItem = async() => {
 
     return await findAllFavoris
 }
+
+//findOne
+export const selectOneItem = async(item_id) => {
+
+
+    const findOneFavoris = new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql("SELECT * from favoris WHERE item_id=?",
+                [item_id],
+                (_, result) => {
+                    resolve(result)
+                },
+                (_, error) => {
+
+                    reject(error)
+
+                }
+            )
+        })
+    })
+
+    return await findOneFavoris
+}
+
+
+//findAll favorie true
+export const deleteItem = async(item_id) => {
+
+
+    const deleteFavoris = new Promise((resolve, reject) => {
+        db.transaction(tx => {
+            tx.executeSql("DELETE FROM favoris WHERE item_id=?",
+                [item_id],
+                (_, result) => {
+                    resolve(result)
+                },
+                (_, error) => {
+
+                    reject(error)
+
+                }
+            )
+        })
+    })
+
+    return await deleteFavoris
+}
