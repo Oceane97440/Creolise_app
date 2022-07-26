@@ -1,163 +1,67 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView, FlatList } from 'react-native';
+import { Text, View, Image, TouchableOpacity, ActivityIndicator, TextInput, ScrollView, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../../styles/IndexStyles';
 import List from '../../components/List';
 import { selectAllItem } from '../../database/db';
+import axios from 'axios';
+
 
 
 export default function Index({ navigation }) {
 
-  const [fullList, setFullList] = useState([
-    {
-      id: '1',
-      name: 'Hotêl Dina',
-      price: '230',
-      description: 'Jolie hotel de st denis',
-      ville: 'Saint-Denis',
-      categorie: 'Hotels',
-      photos: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/60666169.jpg?k=649bef690224bdbc0f51b75208b6b328ddc8a3e22d8085cea59d424499c97a53&o=&hp=1',
-      avantage: [
-        {
-          id: '1',
-          point_fort: 'Restaurant',
-          icon: require("../../public/img/3d-fluency-spoon-and-knife.png")
-        },
-        {
-          id: '2',
-          point_fort: 'Salle de sport',
-          icon: require("../../public/img/3d-fluency-football-player.png")
-        },
-        {
-          id: '3',
-          point_fort: 'Spa',
-          icon: require("../../public/img/3d-fluency-pink-flower.png")
-        },
-        {
-          id: '4',
-          point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
-        },
-      ]
 
-    },
-    {
-      id: '2',
-      name: 'Relais \n Hermitage',
-      price: '120',
-      description: 'Hotel au bord de mer de st-gille',
-      ville: 'Saint-Gilles',
-      categorie: 'Hotels',
-      photos: 'https://imgcy.trivago.com/c_limit,d_dummy.jpeg,f_auto,h_1300,q_auto,w_2000/itemimages/32/05/320511_v6.jpeg',
-      avantage: [
-        {
-          id: '1',
-          point_fort: 'Restaurant',
-          icon: require("../../public/img/3d-fluency-spoon-and-knife.png")
-        },
-        {
-          id: '2',
-          point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
-        },
-        {
-          id: '3',
-          point_fort: 'Animation music',
-          icon: require("../../public/img/3d-fluency-music-note.png")
-        },
-      ]
 
-    },
-
-    {
-      id: '3',
-      name: 'Saint-Alexie',
-      price: '320',
-      description: 'Hotel 4* qui se trouve à la plage du Boucant',
-      ville: 'Saint-Paul',
-      categorie: 'Hotels',
-      photos: 'https://images.citybreak.com/image.aspx?ImageId=4571665',
-      avantage: [
-        {
-          id: '1',
-          point_fort: 'Restaurant',
-          icon: require("../../public/img/3d-fluency-spoon-and-knife.png")
-        },
-        {
-          id: '2',
-          point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
-        },
-        {
-          id: '3',
-          point_fort: 'Animation music',
-          icon: require("../../public/img/3d-fluency-music-note.png")
-        },
-        {
-          id: '4',
-          point_fort: 'Salle de sport',
-          icon: require("../../public/img/3d-fluency-football-player.png")
-        },
-        {
-          id: '5',
-          point_fort: 'Spa',
-          icon: require("../../public/img/3d-fluency-pink-flower.png")
-        },
-      ]
-
-    },
-    {
-      id: '4',
-      name: 'Saint-Hubert',
-      price: '20',
-      description: 'Brasserie',
-      ville: 'Saint-Denis',
-      categorie: 'Restaurants',
-      photos: 'https://passtime-media.s3.eu-west-3.amazonaws.com/SPs3comf4pP3vUxu6AhnCHNm',
-      avantage: [
-        {
-          id: '1',
-          point_fort: 'Restaurant',
-          icon: require("../../public/img/3d-fluency-spoon-and-knife.png")
-        },
-        {
-          id: '2',
-          point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
-        },
-        {
-          id: '3',
-          point_fort: 'Animation music',
-          icon: require("../../public/img/3d-fluency-music-note.png")
-        },
-
-      ]
-
-    },
-    {
-      id: '5',
-      name: 'Forêt \n Providence',
-      price: '',
-      description: 'Randonner en plein nature au coeur de St-denis',
-      ville: 'Saint-Denis',
-      categorie: 'Nature',
-      photos: 'http://medias.tourism-system.fr/3/5/158493_la_providence-1.jpg',
-      avantage: [
-
-        {
-          id: '1',
-          point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
-        }
-      ]
-
-    },
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [fullList, setFullList] = useState([]);
   const [dataListFavoris, setdataListFavoris] = useState([]);
-
   const [villes, setVille] = useState('Tout')
   const [cat, setCat] = useState('Hotels')
 
+
+  const fetchData = async () => {
+
+    try {
+      const itemData = await selectAllItem()
+      setdataListFavoris(itemData.rows._array)
+
+    } catch (error) {
+      console.log(error)
+
+    }
+  }
+
+
+  useEffect(() => {
+    (async () => {
+
+      getApi();
+      fetchData();
+
+
+
+
+    })();
+  }, [fullList, dataListFavoris]);
+
+
+
+
+  const getApi = async () => {
+    try {
+      //Endpoint API avec la clès api + latitude et longitude
+      const response = await axios({
+        method: 'get',
+        url: "https://api-monuments-re.herokuapp.com/items",
+      });
+
+      setFullList(response.data);
+      setLoading(false);
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 
   const filteredList = useMemo(
@@ -178,27 +82,7 @@ export default function Index({ navigation }) {
 
   )
 
-  const fetchData = async () => {
 
-    try {
-      const itemData = await selectAllItem()
-      setdataListFavoris(itemData.rows._array)
-    } catch (error) {
-      console.log(error)
-
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  });
-
-  useEffect(() => {
-    if (dataListFavoris.length < 0) {
-      setdataListFavoris([])
-    }
-
-  }, [dataListFavoris, fullList]);
 
 
 
@@ -212,7 +96,13 @@ export default function Index({ navigation }) {
     setCat(categorie)
   }
 
-
+  if (loading) {
+    return (
+      <View style={Indexstyles.container}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
   return (
     <View style={Indexstyles.container}>
 
@@ -270,7 +160,7 @@ export default function Index({ navigation }) {
         <FlatList
 
           data={filteredList}
-          renderItem={({ item }) => <List item={item} favoris={dataListFavoris}navigation={navigation} />}
+          renderItem={({ item }) => <List item={item} favoris={dataListFavoris} navigation={navigation} />}
           keyExtractor={item => item.id}
           horizontal={true}
 

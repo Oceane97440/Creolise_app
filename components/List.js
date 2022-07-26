@@ -93,7 +93,7 @@ const List = ({ item, favoris, navigation }) => {
         return (
 
 
-            <View style={{ marginRight: -15 }}>
+            <View style={{ margin:1,paddingRight:1,paddingLeft:1,width:230 }}>
 
                 <TouchableOpacity
                     onPress={() => {

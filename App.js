@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React,{useState,useEffect} from "react";
+import {View, StyleSheet,ActivityIndicator } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { initSqlite } from "./database/db";
 import HomeStackNav from './routes/HomeStackNav';
@@ -12,6 +12,7 @@ initSqlite().then(()=>{
 })
 
 export default function App() {
+
 
 
 

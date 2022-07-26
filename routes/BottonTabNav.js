@@ -7,6 +7,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
+
+ 
     return (
        
 

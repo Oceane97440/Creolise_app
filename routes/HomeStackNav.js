@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { createStackNavigator } from '@react-navigation/stack';
 import Detaile from "../screens/home/Detail";
 import MyTabs from "./BottonTabNav";
@@ -10,10 +10,15 @@ import Signup from "../screens/login/Signup"
 
 const Stack = createStackNavigator();
 
-export default function HomeStackNav() {
+export default function HomeStackNav({data}) {
+  const [dataItems, setDataItems] = useState(null);
 
+  useEffect(() => {
+    if (dataItems===null) {
+      setDataItems(data)
 
-
+    }
+  }, [dataItems]);
   return (
 
    
