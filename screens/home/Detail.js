@@ -42,9 +42,11 @@ export default function Detaile({navigation,route}){
     const list = () => {
         return avantage.map(obj => {
 
+            const  icon = obj.icon
+           
           return (
             <View key={obj.id} style={styles.divContenteIcone}>
-                <Image style={styles.icon} source={obj.icon}/>
+                <Image style={styles.icon} source={{ uri:icon}}   />
             <Text style={styles.textIcon}>{obj.point_fort}</Text>
             </View>
           );
