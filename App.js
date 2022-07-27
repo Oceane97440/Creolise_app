@@ -1,18 +1,79 @@
-import React,{useState,useEffect} from "react";
-import {View, StyleSheet,ActivityIndicator } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
-import { initSqlite } from "./database/db";
+import axios from 'axios';
 import HomeStackNav from './routes/HomeStackNav';
+import { initSqlite } from "./database/db";
+import { selectAllItem } from "./database/db";
 
-initSqlite().then(()=>{
+
+initSqlite().then(() => {
   console.log('Table initialiser')
-}).catch(err=>{
+}).catch(err => {
 
   console.log(err)
 })
 
 export default function App() {
 
+  const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+
+  const [dataApi, setdataApi] = useState([]);
+  const [dataListFavoris, setdataListFavoris] = useState([]);
+
+  const getApi = async () => {
+    try {
+      //Endpoint API avec la clès api + latitude et longitude
+      const response = await axios({
+        method: 'get',
+        url: "https://api-monuments-re.herokuapp.com/items",
+      });
+
+      setdataApi(response.data);
+      setLoading(false);
+     
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const selectAll = async ()=>{
+    try {
+      const itemData = await selectAllItem()
+      setdataListFavoris(itemData.rows._array)
+      setLoading2(false)
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+
+      await getApi();
+      
+    })();
+  }, []);
+
+  useEffect(() => {
+    ( () => {
+
+        selectAll();
+
+      
+      
+    })();
+  }, [dataListFavoris]);
+
+
+  if ((loading)&&(loading2)) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
 
 
 
@@ -20,11 +81,11 @@ export default function App() {
 
     <NavigationContainer style={styles.container}>
 
-      <HomeStackNav/>
+      <HomeStackNav data={dataApi} dataSqlite={dataListFavoris}/>
 
     </NavigationContainer>
 
-   
+
   );
 
 

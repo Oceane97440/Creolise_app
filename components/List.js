@@ -5,7 +5,7 @@ import { Indexstyles } from '../styles/IndexStyles';
 import { addItem } from '../database/db';
 import { deleteItem } from '../database/db';
 import { selectOneItem } from '../database/db';
-const List = ({ item, favoris, navigation }) => {
+const List = ({ item, navigation }) => {
 
 
 
@@ -24,51 +24,26 @@ const List = ({ item, favoris, navigation }) => {
     }
 
 
-    const list = () => {
-        const key = item.id
-
-        if (favoris.length > 0) {
-            return favoris.map((element) => {
-                
-
-                if ((element.item_id === key) && (element.is_favorie === 1)) {
-                    var color = "#d43d35"
-
-
-                    return (
-                        <Icon key={key} name="heart" size={30}
-
-                            color={color}
-
-                        />
-                    )
-
-                }
-
-
-            });
-        }
- 
-        
-    };
-
-
-
-
-
-
-
-
-
-    const addItemFavoris = async (id, name, photos, price, categorie, statut) => {
+    const addItemFavoris = async (id, name, photos, price, categorie) => {
         try {
             const findOne = await selectOneItem(id)
 
-            if (findOne.rows.length !== 0) {
-                const deleteFavoris = await deleteItem(id)
+            if (findOne.rows.length === 0) {
+                addItem(id, name, photos, price, categorie, 1)
+                console.log("Vous avez ajouté votre destinations dans la liste de vos favoris")
+
             } else {
-                const dbinsertData = await addItem(id, name, photos, price, categorie, statut)
+                deleteItem(id)
+                console.log("Vous avez supprimer la destination de votre liste")
             }
+
+
+
+            /* if (findOne.rows.length === 1) {
+                 const deleteFavoris = deleteItem(id)
+             } else {
+                 const dbinsertData = addItem(id, name, photos, price, categorie, statut)
+             }*/
 
         } catch (error) {
             console.log(error)
@@ -93,7 +68,7 @@ const List = ({ item, favoris, navigation }) => {
         return (
 
 
-            <View style={{ margin:1,paddingRight:1,paddingLeft:1,width:230 }}>
+            <View style={{ margin: 1, paddingRight: 1, paddingLeft: 1, width: 230 }}>
 
                 <TouchableOpacity
                     onPress={() => {
@@ -112,10 +87,13 @@ const List = ({ item, favoris, navigation }) => {
 
 
 
-                    <TouchableOpacity style={Indexstyles.iconlike} onPress={() => handlePressLike(item, true)}>
+                    <TouchableOpacity style={Indexstyles.iconlike} onPress={() => handlePressLike(item)}>
 
-                        {list() }
-                        
+                        <Icon name="heart" size={30}
+
+                            color={"#d43d35"}
+
+                        />
                     </TouchableOpacity>
 
                     <Text style={Indexstyles.textCardBottom}>{item.name}</Text>

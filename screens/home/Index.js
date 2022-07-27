@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity, ActivityIndicator, TextInput, ScrollView, FlatList } from 'react-native';
+import { Text, View, Image, TouchableOpacity, TextInput, ScrollView, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../../styles/IndexStyles';
 import List from '../../components/List';
@@ -8,62 +8,23 @@ import axios from 'axios';
 
 
 
-export default function Index({ navigation }) {
+export default function Index({ navigation,data }) {
 
 
-
-  const [loading, setLoading] = useState(true);
   const [fullList, setFullList] = useState([]);
-  const [dataListFavoris, setdataListFavoris] = useState([]);
   const [villes, setVille] = useState('Tout')
   const [cat, setCat] = useState('Hotels')
 
 
-  const fetchData = async () => {
-
-    try {
-      const itemData = await selectAllItem()
-      setdataListFavoris(itemData.rows._array)
-
-    } catch (error) {
-      console.log(error)
-
-    }
-  }
-
-
   useEffect(() => {
-    (async () => {
 
-      getApi();
-      fetchData();
+    setFullList(data);
 
-
-
-
-    })();
-  }, [fullList, dataListFavoris]);
+  }, [fullList]);
 
 
 
-
-  const getApi = async () => {
-    try {
-      //Endpoint API avec la clès api + latitude et longitude
-      const response = await axios({
-        method: 'get',
-        url: "https://api-monuments-re.herokuapp.com/items",
-      });
-
-      setFullList(response.data);
-      setLoading(false);
-
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-
+ 
   const filteredList = useMemo(
     () => {
       if (villes === 'Tout') return fullList
@@ -96,13 +57,6 @@ export default function Index({ navigation }) {
     setCat(categorie)
   }
 
-  if (loading) {
-    return (
-      <View style={Indexstyles.container}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
   return (
     <View style={Indexstyles.container}>
 
@@ -160,7 +114,7 @@ export default function Index({ navigation }) {
         <FlatList
 
           data={filteredList}
-          renderItem={({ item }) => <List item={item} favoris={dataListFavoris} navigation={navigation} />}
+          renderItem={({ item }) => <List item={item} navigation={navigation} />}
           keyExtractor={item => item.id}
           horizontal={true}
 

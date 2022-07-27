@@ -5,7 +5,7 @@ export const initSqlite = () => {
 
     const initPromise = new Promise((resolve, reject) => {
         db.transaction(tx => {
-            tx.executeSql("create table if not exists favoris (id integer primary key  not null, item_id text ,item_name text,item_photos text,item_price num,item_categorie text,is_favorie boolean value false);",
+            tx.executeSql("create table if not exists favoris (id integer primary key  not null, item_id int ,item_name text,item_photos text,item_price num,item_categorie text,is_favorie boolean value false);",
                 [],
                 () => {
 
@@ -49,7 +49,7 @@ export const addItem = (id,name,photos,price,categorie,statut) => {
 }
 
 //findAll favorie true
-export const selectAllItem = async() => {
+export const selectAllItem = () => {
 
 
     const findAllFavoris = new Promise((resolve, reject) => {
@@ -68,11 +68,11 @@ export const selectAllItem = async() => {
         })
     })
 
-    return await findAllFavoris
+    return  findAllFavoris
 }
 
 //findOne
-export const selectOneItem = async(item_id) => {
+export const selectOneItem = (item_id) => {
 
 
     const findOneFavoris = new Promise((resolve, reject) => {
@@ -91,12 +91,12 @@ export const selectOneItem = async(item_id) => {
         })
     })
 
-    return await findOneFavoris
+    return  findOneFavoris
 }
 
 
 //findAll favorie true
-export const deleteItem = async(item_id) => {
+export const deleteItem = (item_id) => {
 
 
     const deleteFavoris = new Promise((resolve, reject) => {
@@ -115,5 +115,5 @@ export const deleteItem = async(item_id) => {
         })
     })
 
-    return await deleteFavoris
+    return  deleteFavoris
 }

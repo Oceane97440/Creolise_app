@@ -10,15 +10,8 @@ import Signup from "../screens/login/Signup"
 
 const Stack = createStackNavigator();
 
-export default function HomeStackNav({data}) {
-  const [dataItems, setDataItems] = useState(null);
+export default function HomeStackNav({data,dataSqlite}) {
 
-  useEffect(() => {
-    if (dataItems===null) {
-      setDataItems(data)
-
-    }
-  }, [dataItems]);
   return (
 
    
@@ -31,7 +24,7 @@ export default function HomeStackNav({data}) {
        <Stack.Screen name="Signup" component={Signup}/>
         */}
 
-       <Stack.Screen name="Home" component={MyTabs} />
+       <Stack.Screen name="Home"  children={() => <MyTabs dataApi={data} dataBdd={dataSqlite}/>} />
        <Stack.Screen name="Detaile" component={Detaile}/>
 
 

@@ -83,7 +83,6 @@ export const Indexstyles = StyleSheet.create({
       position: 'relative',
       bottom:170,
       left:70,
-      //backgroundColor:'#000',
       width:40,
       height: 30,
       alignItems:'center'
