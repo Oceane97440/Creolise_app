@@ -31,7 +31,10 @@ export default function App() {
       });
 
       setdataApi(response.data);
-      setLoading(false);
+      setLoading(false); 
+      
+      
+ 
      
     } catch (err) {
       console.log(err);
@@ -52,41 +55,46 @@ export default function App() {
     (async () => {
 
       await getApi();
+
+      
       
     })();
   }, []);
 
   useEffect(() => {
-    ( () => {
+    (async () => {
 
-        selectAll();
+      await selectAll();
 
       
       
     })();
-  }, [dataListFavoris]);
+  }, []);
 
 
-  if ((loading)&&(loading2)) {
+  if ((loading)&&(loading2)&&(dataApi.length===0)) {
+
     return (
       <View style={styles.container}>
         <ActivityIndicator />
       </View>
     );
+  }else{
+
+    return (
+
+      <NavigationContainer style={styles.container}>
+  
+        <HomeStackNav data={dataApi} dataSqlite={dataListFavoris}/>
+  
+      </NavigationContainer>
+  
+  
+    );
   }
 
 
 
-  return (
-
-    <NavigationContainer style={styles.container}>
-
-      <HomeStackNav data={dataApi} dataSqlite={dataListFavoris}/>
-
-    </NavigationContainer>
-
-
-  );
 
 
 

@@ -16,13 +16,13 @@ export default function HomeStackNav({data,dataSqlite}) {
 
    
        <Stack.Navigator screenOptions={{header:()=>null}}>
-       {/**
-        <Stack.Screen name="HomePage" component={HomePage}/>
+       
+      <Stack.Screen name="HomePage" component={HomePage}/>
        <Stack.Screen name="Etape1" component={Etape1}/>
        <Stack.Screen name="Etape2" component={Etape2}/>
        <Stack.Screen name="Login" component={Login}/>
        <Stack.Screen name="Signup" component={Signup}/>
-        */}
+        
 
        <Stack.Screen name="Home"  children={() => <MyTabs dataApi={data} dataBdd={dataSqlite}/>} />
        <Stack.Screen name="Detaile" component={Detaile}/>

@@ -30,11 +30,11 @@ const List = ({ item, navigation }) => {
 
             if (findOne.rows.length === 0) {
                 addItem(id, name, photos, price, categorie, 1)
-                console.log("Vous avez ajouté votre destinations dans la liste de vos favoris")
+                alert("Vous avez ajouté votre destinations dans la liste de vos favoris")
 
             } else {
                 deleteItem(id)
-                console.log("Vous avez supprimer la destination de votre liste")
+                alert("Vous avez supprimer la destination de votre liste")
             }
 
 
@@ -52,7 +52,7 @@ const List = ({ item, navigation }) => {
 
     }
 
-    const handlePressLike = (item, statut) => {
+    const handlePressLike = (item) => {
         const id = item.id
         const name = item.name
         const photos = item.photos
@@ -61,7 +61,7 @@ const List = ({ item, navigation }) => {
 
 
 
-        addItemFavoris(id, name, photos, price, categorie, statut)
+        addItemFavoris(id, name, photos, price, categorie)
     }
 
     if (item) {
