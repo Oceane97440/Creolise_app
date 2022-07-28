@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Favoris from '../screens/users/Favoris';
 import Geolocalisation from '../screens/users/Location';

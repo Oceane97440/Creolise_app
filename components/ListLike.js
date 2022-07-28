@@ -1,11 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity, ImageBackground, TextInput, FlatList, StyleSheet } from 'react-native';
+import { Text, View, Image, TouchableOpacity,StyleSheet } from 'react-native';
+import axios from 'axios';
 
 const ListLike = ({ item, navigation }) => {
 
+    const [loading, setLoading] = useState(true);
+    const [dataApi, setdataApi] = useState([]);
 
 
-   switch (item.item_categorie) {
+    const getOneDataApi = async () => {
+        try {
+            //Endpoint API avec la clès api + latitude et longitude
+            const response = await axios({
+                method: 'get',
+                url: `https://api-monuments-re.herokuapp.com/items/${item.item_id}`,
+            });
+
+            //setdataApi(response.data);
+            setdataApi(response.data.avantage)
+            setLoading(false);
+
+
+
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        (async () => {
+
+            await getOneDataApi();
+
+
+
+        })();
+    }, []);
+
+    const items = {
+
+        "id": item.item_id,
+        "name": item.item_name,
+        "price": item.item_price,
+        "description": item.item_description,
+        "categorie": item.item_categorie,
+        "photos": item.item_photos,
+        "avantage": dataApi
+
+
+    }
+
+
+    switch (item.item_categorie) {
         case "Hotels":
             var string = "€/nuit"
             break;
@@ -26,7 +73,7 @@ const ListLike = ({ item, navigation }) => {
 
                 <TouchableOpacity
                     onPress={() => {
-                        navigation.navigate('Detaile', { item })
+                        navigation.navigate('Detaile', { item: items })
 
                     }}>
                     <Image source={{ uri: item.item_photos }}
@@ -49,7 +96,7 @@ const ListLike = ({ item, navigation }) => {
             </View>
         </View>
     );
-   
+
 }
 
 
