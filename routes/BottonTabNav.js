@@ -4,11 +4,10 @@ import Favoris from '../screens/users/Favoris';
 import Geolocalisation from '../screens/users/Location';
 import Index from '../screens/home/Index';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 const Tab = createBottomTabNavigator();
 
-function MyTabs({dataApi,dataBdd}) {
 
+function MyTabs({dataApi,dataBdd,navigation}) {
 
     
  
@@ -16,13 +15,13 @@ function MyTabs({dataApi,dataBdd}) {
        
 
         <Tab.Navigator screenOptions={{header:()=>null}}>
-        <Tab.Screen name="Accueil" children={() =><Index data={dataApi} />} options={{
+        <Tab.Screen name="Accueil"  children={() =><Index   data={dataApi} navigation={navigation} />} options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"home"} color={color} size={size} />)
                 }}/>
         <Tab.Screen name="Adresse" component={Geolocalisation} options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"location-arrow"} color={color} size={size} />)
                 }}/>
-        <Tab.Screen name="Favoris" children={() =><Favoris favoris={dataBdd}/>}  options={{
+        <Tab.Screen name="Favoris" children={() =><Favoris favoris={dataBdd} navigation={navigation} />}  options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"heart"} color={color} size={size} />)
                 }}/>
 

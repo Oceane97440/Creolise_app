@@ -16,6 +16,7 @@ initSqlite().then(() => {
 
 export default function App() {
 
+
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(true);
 
@@ -85,7 +86,7 @@ export default function App() {
 
       <NavigationContainer style={styles.container}>
   
-        <HomeStackNav data={dataApi} dataSqlite={dataListFavoris}/>
+        <HomeStackNav  data={dataApi} dataSqlite={dataListFavoris}/>
   
       </NavigationContainer>
   

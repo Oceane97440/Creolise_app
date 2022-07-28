@@ -3,13 +3,11 @@ import { Text, View, Image, TouchableOpacity, TextInput, ScrollView, FlatList } 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../../styles/IndexStyles';
 import List from '../../components/List';
-import { selectAllItem } from '../../database/db';
-import axios from 'axios';
+
 
 
 
 export default function Index({ navigation,data }) {
-
 
   const [fullList, setFullList] = useState([]);
   const [villes, setVille] = useState('Tout')

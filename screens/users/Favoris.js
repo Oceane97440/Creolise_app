@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View,FlatList, StyleSheet } from 'react-native';
+
 import ListLike from '../../components/ListLike';
 import { selectAllItem } from '../../database/db';
+
 const Favoris = ({ navigation,favoris }) => {
+
+
   const [dataFavoris, setdataFavoris] = useState(favoris);
 
   const selectAll = async ()=>{

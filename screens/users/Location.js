@@ -20,22 +20,22 @@ const Geolocalisation = ({navigation}) => {
         {
           id: '1',
           point_fort: 'Restaurant',
-          icon: require("../../public/img/3d-fluency-spoon-and-knife.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-spoon-and-knife.png"
         },
         {
           id: '2',
           point_fort: 'Salle de sport',
-          icon: require("../../public/img/3d-fluency-football-player.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-football-player.png"
         },
         {
           id: '3',
           point_fort: 'Spa',
-          icon: require("../../public/img/3d-fluency-pink-flower.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-pink-flower.png"
         },
         {
           id: '4',
           point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-blue-car.png"
         },
       ]
 
@@ -56,17 +56,17 @@ const Geolocalisation = ({navigation}) => {
         {
           id: '1',
           point_fort: 'Restaurant',
-          icon: require("../../public/img/3d-fluency-spoon-and-knife.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-spoon-and-knife.png"
         },
         {
           id: '2',
           point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-blue-car.png"
         },
         {
           id: '3',
           point_fort: 'Animation music',
-          icon: require("../../public/img/3d-fluency-music-note.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-music-note.png"
         },
 
       ]
@@ -88,7 +88,7 @@ const Geolocalisation = ({navigation}) => {
         {
           id: '1',
           point_fort: 'Place de parking',
-          icon: require("../../public/img/3d-fluency-blue-car.png")
+          icon: "https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-blue-car.png"
         }
       ]
 
@@ -107,22 +107,23 @@ const Geolocalisation = ({navigation}) => {
         {
           id:'1',
           point_fort:'Restaurant',
-          icon:require("../../public/img/3d-fluency-spoon-and-knife.png")
+          icon:"https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-spoon-and-knife.png"
         },
         {
           id:'2',
           point_fort:'Place de parking',
-          icon:require("../../public/img/3d-fluency-blue-car.png")
+          icon:"https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-blue-car.png"
         },
         {
           id:'3',
           point_fort:'Animation music',
-          icon:require("../../public/img/3d-fluency-music-note.png")
+          icon:"https://antennesb.fr/wp-content/uploads/2022/07/3d-fluency-music-note.png"
         },
       ]
 
     },
   ]
+
 
   const [geodata, setGeodata] = useState('0');
 
