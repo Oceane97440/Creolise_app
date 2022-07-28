@@ -35,12 +35,12 @@ export const Indexstyles = StyleSheet.create({
       input:{
 
         backgroundColor:'#fafafa',
-        height:'4%',
         margin:10,
-        width:'90%',
+        width:200,
         borderRadius:40,
-        padding:20,
         color:'black',
+        paddingLeft: 20,
+        margin: 5,
 
         
     },

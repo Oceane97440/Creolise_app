@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity, TextInput, ScrollView, FlatList } 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../../styles/IndexStyles';
 import List from '../../components/List';
-
+import SearchBar from '../../components/SearchBar';
 
 
 
@@ -70,10 +70,7 @@ export default function Index({ navigation,data }) {
         {"\n"}
       </Text>
 
-      <TextInput style={Indexstyles.input} placeholder='Recherche...'>
-        <Icon name="search" size={20} color="#d43d35" />
-
-      </TextInput>
+      <SearchBar data={fullList} navigation={navigation}/>
 
       <ScrollView>
 
