@@ -18,7 +18,7 @@ function MyTabs({dataApi,dataBdd,navigation}) {
         <Tab.Screen name="Accueil"  children={() =><Index   data={dataApi} navigation={navigation} />} options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"home"} color={color} size={size} />)
                 }}/>
-        <Tab.Screen name="Adresse" component={Geolocalisation} options={{
+        <Tab.Screen name="Adresse" children={() =><Geolocalisation   data={dataApi} navigation={navigation} />} options={{
                     tabBarIcon: ({size, color}) => (<Icon name={"location-arrow"} color={color} size={size} />)
                 }}/>
         <Tab.Screen name="Favoris" children={() =><Favoris favoris={dataBdd} navigation={navigation} />}  options={{

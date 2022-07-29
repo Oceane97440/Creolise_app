@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity, ImageBackground, TextInput, FlatList, StyleSheet } from 'react-native';
+import React from 'react';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Liststyles } from '../styles/IndexStyles';
 
 const ListAdresse = ({ item, navigation }) => {
 
@@ -21,7 +22,7 @@ const ListAdresse = ({ item, navigation }) => {
 
     return (
         <View>
-            <View style={styles.divList}>
+            <View style={Liststyles.divList}>
 
                 <TouchableOpacity
                     onPress={() => {
@@ -29,17 +30,17 @@ const ListAdresse = ({ item, navigation }) => {
 
                     }}>
                     <Image source={{ uri: item.photos }}
-                        style={styles.img} />
+                        style={Liststyles.img} />
                 </TouchableOpacity>
 
-                <View style={styles.divText}>
+                <View style={Liststyles.divText}>
                     <View>
-                        <Text style={styles.h2}>{item.name}</Text>
+                        <Text style={Liststyles.h2}>{item.name}</Text>
                         <Text >{item.categorie}</Text>
                     </View>
 
 
-                    <Text style={styles.price}>{item.price}{string}</Text>
+                    <Text style={Liststyles.price}>{item.price}{string}</Text>
 
 
                 </View>
@@ -52,39 +53,6 @@ const ListAdresse = ({ item, navigation }) => {
 }
 
 
-const styles = StyleSheet.create({
-    divList: {
-        marginTop: 10,
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    img: {
-        width: '100%',
-        height: 210,
-        borderRadius: 20,
-        resizeMode: 'center',
-
-    },
-    divText: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 10,
-        alignContent: 'center',
-        alignItems: 'center'
-    },
-    h2: {
-        color: "#000",
-        fontSize: 25,
-        fontWeight: "bold",
-    },
-    price: {
-        color: '#d43d35',
-        fontWeight: 'bold',
-        fontSize: 25,
-
-    }
-})
 
 
 

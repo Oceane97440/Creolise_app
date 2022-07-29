@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity,StyleSheet } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Liststyles } from '../styles/IndexStyles';
 import axios from 'axios';
 
 const ListLike = ({ item, navigation }) => {
 
-    const [loading, setLoading] = useState(true);
     const [dataApi, setdataApi] = useState([]);
 
 
@@ -18,7 +18,6 @@ const ListLike = ({ item, navigation }) => {
 
             //setdataApi(response.data);
             setdataApi(response.data.avantage)
-            setLoading(false);
 
 
 
@@ -69,7 +68,7 @@ const ListLike = ({ item, navigation }) => {
 
     return (
         <View>
-            <View style={styles.divList}>
+            <View style={Liststyles.divList}>
 
                 <TouchableOpacity
                     onPress={() => {
@@ -77,17 +76,17 @@ const ListLike = ({ item, navigation }) => {
 
                     }}>
                     <Image source={{ uri: item.item_photos }}
-                        style={styles.img} />
+                        style={Liststyles.img} />
                 </TouchableOpacity>
 
-                <View style={styles.divText}>
+                <View style={Liststyles.divText}>
                     <View>
-                        <Text style={styles.h2}>{item.item_name}</Text>
+                        <Text style={Liststyles.h2}>{item.item_name}</Text>
                         <Text >{item.item_categorie}</Text>
                     </View>
 
 
-                    <Text style={styles.price}>{item.item_price}{string}</Text>
+                    <Text style={Liststyles.price}>{item.item_price}{string}</Text>
 
 
                 </View>
@@ -100,39 +99,6 @@ const ListLike = ({ item, navigation }) => {
 }
 
 
-const styles = StyleSheet.create({
-    divList: {
-        marginTop: 10,
-        display: 'flex',
-        flexDirection: 'column'
-    },
-    img: {
-        width: '100%',
-        height: 210,
-        borderRadius: 20,
-        resizeMode: 'center',
-
-    },
-    divText: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        margin: 10,
-        alignContent: 'center',
-        alignItems: 'center'
-    },
-    h2: {
-        color: "#000",
-        fontSize: 25,
-        fontWeight: "bold",
-    },
-    price: {
-        color: '#d43d35',
-        fontWeight: 'bold',
-        fontSize: 25,
-
-    }
-})
 
 
 

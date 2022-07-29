@@ -64,7 +64,7 @@ export default function Etape1({navigation}) {
       justifyContent: 'center',
     },
     img_travel: {
-      width:'78%',
+      width:'85%',
       height: '60%',
 
     },
