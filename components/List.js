@@ -24,13 +24,13 @@ const List = ({ item, navigation }) => {
     }
 
 
-    const addItemFavoris = async (id, name, photos, price, categorie,description) => {
+    const addItemFavoris = async (id, name, photos, price, categorie,description,site,num) => {
         try {
 
             const findOne = await selectOneItem(id)
 
             if (findOne.rows.length === 0) {
-                addItem(id, name, photos, price, categorie, 1,description)
+                addItem(id, name, photos, price, categorie, 1,description,site,num)
                 alert("Vous avez ajouté votre destinations dans la liste de vos favoris")
 
             } else {
@@ -60,11 +60,12 @@ const List = ({ item, navigation }) => {
         const price = item.price
         const categorie = item.categorie
         const description = item.description
+        const site = item.site
+        const num = item.num
 
 
 
-
-        addItemFavoris(id, name, photos, price, categorie,description)
+        addItemFavoris(id, name, photos, price, categorie,description,site,num)
     }
 
     if (item) {

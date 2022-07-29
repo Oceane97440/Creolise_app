@@ -59,7 +59,7 @@ const Geolocalisation = ({data,navigation}) => {
     dist = dist * 60 * 1.1515;
   
 
-    if (dist<=5) {
+    if (dist<=3) {
 
       data_location.push(obj)
     }

@@ -21,6 +21,8 @@ export default function Detaile({ navigation, route }) {
     const { categorie } = route.params.item;
     const { description } = route.params.item;
     const { photos } = route.params.item;
+    const { num } = route.params.item;
+    const { site } = route.params.item;
     const { avantage } = route.params.item;
 
 
@@ -40,12 +42,12 @@ export default function Detaile({ navigation, route }) {
 
 
     pressCall=()=>{
-        const num='tel://12355654656'
-        Linking.openURL(num)
+        const tel='tel://'+num
+        Linking.openURL(tel)
     }
 
     pressSite=()=>{
-        const url='https://google.com'
+        const url=site
         Linking.openURL(url)
     }
 

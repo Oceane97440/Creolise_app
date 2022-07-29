@@ -45,6 +45,8 @@ const ListLike = ({ item, navigation }) => {
         "description": item.item_description,
         "categorie": item.item_categorie,
         "photos": item.item_photos,
+        "site":item.item_site,
+        "num":item.item_num,
         "avantage": dataApi
 
 

@@ -5,7 +5,7 @@ export const initSqlite = () => {
 
     const initPromise = new Promise((resolve, reject) => {
         db.transaction(tx => {
-            tx.executeSql("create table if not exists favoris (id integer primary key  not null, item_id int ,item_name text,item_photos text,item_price num,item_categorie text,is_favorie boolean value false,item_description text);",
+            tx.executeSql("create table if not exists favoris (id integer primary key  not null, item_id int ,item_name text,item_photos text,item_price num,item_categorie text,is_favorie boolean value false,item_description text,item_site text,item_num text);",
                 [],
                 () => {
 
@@ -25,13 +25,13 @@ export const initSqlite = () => {
 
 //insert item dans table des favorie
 
-export const addItem = (id,name,photos,price,categorie,statut,description) => {
+export const addItem = (id,name,photos,price,categorie,statut,description,site,num) => {
 
 
     const insertFavoris = new Promise((resolve, reject) => {
         db.transaction(tx => {
-            tx.executeSql("INSERT INTO favoris (item_id,item_name,item_photos,item_price,item_categorie,is_favorie,item_description) VALUES(?,?,?,?,?,?,?);",
-                [id,name,photos,price,categorie,statut,description],
+            tx.executeSql("INSERT INTO favoris (item_id,item_name,item_photos,item_price,item_categorie,is_favorie,item_description,item_site ,item_num) VALUES(?,?,?,?,?,?,?,?,?);",
+                [id,name,photos,price,categorie,statut,description,site,num],
                 (_, result) => {
 
                     resolve(result)
