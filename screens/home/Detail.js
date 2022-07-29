@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ImageBackground, TextInput, ScrollView } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Linking} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Detailstyles } from '../../styles/IndexStyles';
 export default function Detaile({ navigation, route }) {
@@ -36,6 +36,52 @@ export default function Detaile({ navigation, route }) {
             var string = ""
 
             break;
+    }
+
+
+    pressCall=()=>{
+        const num='tel://12355654656'
+        Linking.openURL(num)
+    }
+
+    pressSite=()=>{
+        const url='https://google.com'
+        Linking.openURL(url)
+    }
+
+    const OpenURLButton = () => {
+
+
+
+        if ((categorie === "Restaurants") || (categorie === "Hotels")) {
+
+
+            return (
+                <View style={Detailstyles.divBtn}>
+                    <TouchableOpacity onPress={pressSite} style={Detailstyles.btnSite}>
+                        <Text style={{ color: "#fff", fontSize: 20, fontWeight: "bold", padding: 10 }}>
+                            <Icon name="link" size={20} color="#fff" style={Detailstyles.iconSite} />
+
+
+                            Voir le site</Text>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity onPress={pressCall} style={Detailstyles.btnPhone}>
+                        <Text style={{ color: "#d43d35", fontSize: 20, fontWeight: "bold", padding: 10 }}>
+                            <Icon name="phone" size={20} color="#d43d35" style={Detailstyles.iconSite} />
+
+
+                            Réserver</Text>
+                    </TouchableOpacity>
+
+
+                </View>
+            )
+
+        }
+
+
     }
 
 
@@ -121,27 +167,9 @@ export default function Detaile({ navigation, route }) {
                     </View>
 
 
-                    <View style={Detailstyles.divBtn}>
-                        <TouchableOpacity onPress={3} style={Detailstyles.btnSite}>
-                            <Text style={{ color: "#fff", fontSize: 20, fontWeight: "bold", padding: 10 }}>
-                                <Icon name="link" size={20} color="#fff" style={Detailstyles.iconSite} />
 
 
-                                Voir le site</Text>
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity onPress={3} style={Detailstyles.btnPhone}>
-                            <Text style={{ color: "#d43d35", fontSize: 20, fontWeight: "bold", padding: 10 }}>
-                                <Icon name="phone" size={20} color="#d43d35" style={Detailstyles.iconSite} />
-
-
-                                Réserver</Text>
-                        </TouchableOpacity>
-
-
-                    </View>
-
+                    {OpenURLButton()}
 
 
 

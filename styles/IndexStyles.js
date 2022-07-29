@@ -301,7 +301,8 @@ export const Detailstyles = StyleSheet.create({
       justifyContent: 'space-between',
       alignContent: 'center',
       position: 'relative',
-      top: -3,
+      bottom: 15,
+      padding:10
 
   },
 
@@ -316,9 +317,9 @@ export const Liststyles = StyleSheet.create({
   },
   img: {
       width: '100%',
-      height: 210,
+      height: 230,
       borderRadius: 20,
-      resizeMode: 'center',
+     // resizeMode: 'center',
 
   },
   divText: {
