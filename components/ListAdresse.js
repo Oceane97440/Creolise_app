@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Liststyles } from '../styles/IndexStyles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ListAdresse = ({ item, navigation }) => {
 
@@ -21,19 +22,30 @@ const ListAdresse = ({ item, navigation }) => {
 
 
     return (
-        <View>
-            <View style={Liststyles.divList}>
+        <View style={Liststyles.divList}>
+            <View style={Liststyles.divCard}>
 
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate('Detaile', { item })
+                <View style={Liststyles.divCardImg}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('Detaile', { item })
 
-                    }}>
-                    <Image source={{ uri: item.photos }}
-                        style={Liststyles.img} />
-                </TouchableOpacity>
+                        }}>
+                        <Image source={{ uri: item.photos }}
+                            style={Liststyles.img} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={Liststyles.iconlocation} onPress={() => {
+                            navigation.navigate('Map', { item }) }}>
+
+                        <Icon name="map-marker" size={40} color={"#FFF"} />
+                    </TouchableOpacity>
+                </View>
+
 
                 <View style={Liststyles.divText}>
+
+
                     <View>
                         <Text style={Liststyles.h2}>{item.name}</Text>
                         <Text >{item.categorie}</Text>

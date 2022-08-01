@@ -308,6 +308,154 @@ export const Detailstyles = StyleSheet.create({
 
 })   
 
+export const Mapstyles = StyleSheet.create({
+  container: {
+      paddingTop: 10,
+      margin: 10,
+      alignItems: "left",
+  },
+  divBtnHead: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      bottom: 20,
+      justifyContent: 'space-between',
+      width: '100%',
+  },
+  divIconHead: {
+      display: 'flex',
+      float: 'right',
+      flexDirection: 'row',
+
+  },
+  iconhead: {
+      padding: 10,
+      margin: 10
+  },
+  iconback: {
+      padding: 10,
+      margin: 10,
+
+
+
+  },
+
+  imghead: {
+      width: "100%",
+      height: 215,
+      borderRadius: 20,
+
+  },
+  divInfo: {
+
+      padding: 2
+  },
+  h1: {
+      color: "#125386",
+      fontSize: 25,
+      fontWeight: "bold"
+  },
+  price: {
+      color: "#d43d35",
+      fontSize: 25,
+      fontWeight: "bold"
+  },
+  titre: {
+      display: 'flex',
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'space-between',
+      padding: 10
+  },
+  divDescription: {
+
+      marginTop: 10,
+      alignSelf: 'flex-start'
+
+  },
+  h2: {
+      color: "#125386",
+      fontSize: 20,
+      fontWeight: "bold",
+      marginTop: 5
+  },
+  icon: {
+      width: 40,
+      height: 40,
+
+  },
+  divIcon: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      margin: 1,
+      marginBottom: 5,
+      width: 360
+
+  },
+  textIcon: {
+
+      padding: 5,
+      fontSize: 14,
+  },
+  divContenteIcone: {
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center'
+  },
+  btnSite: {
+      backgroundColor: '#d43d35',
+      borderRadius: 20,
+      fontWeight: "bold",
+      height: 54,
+      width: '49%',
+      alignItems: 'center',
+      padding: 5,
+
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+
+      elevation: 3,
+
+  },
+  btnPhone: {
+      backgroundColor: '#f5f5f5',
+      borderRadius: 20,
+      fontWeight: "bold",
+      height: 54,
+      width: '45%',
+      alignItems: 'center',
+      padding: 5,
+
+      shadowColor: "#000",
+      shadowOffset: {
+          width: 0,
+          height: 1,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
+
+      elevation: 3,
+
+  },
+  divBtn: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignContent: 'center',
+      position: 'relative',
+      bottom: 15,
+      padding:10
+
+  },
+
+}) 
 
 export const Liststyles = StyleSheet.create({
   divList: {
@@ -319,6 +467,7 @@ export const Liststyles = StyleSheet.create({
       width: '100%',
       height: 230,
       borderRadius: 20,
+
      // resizeMode: 'center',
 
   },
@@ -326,9 +475,11 @@ export const Liststyles = StyleSheet.create({
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
-      margin: 10,
+      margin: 5,
       alignContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      bottom:20,
+      height:50
   },
   h2: {
       color: "#000",
@@ -340,6 +491,22 @@ export const Liststyles = StyleSheet.create({
       fontWeight: 'bold',
       fontSize: 25,
 
+  },
+  iconlocation:{
+    position: 'relative',
+    bottom:'80%',
+    left:'85%',
+    width:30,
+    alignItems:'center'
+  },
+  divCard:{
+    width:'100%',
+  },
+  divCardImg:{
+    width:'100%',
+
+   // flexDirection:'row',
+    //alignItems:'center',
   }
 })
 
@@ -358,7 +525,7 @@ export const Locationstyles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "bold",
     margin:1
-  },
+  }
   
-  
+ 
 })

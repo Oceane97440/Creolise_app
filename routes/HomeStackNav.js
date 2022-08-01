@@ -7,6 +7,7 @@ import Etape1 from "../screens/hp/Etape1"
 import Etape2 from "../screens/hp/Etape2"
 import Login from "../screens/login/Login"
 import Signup from "../screens/login/Signup"
+import DetailMap from "../screens/home/DetailMap";
 import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -28,6 +29,7 @@ export default function HomeStackNav({ data, dataSqlite }) {
 
       <Stack.Screen name="Home" children={() => <MyTabs dataApi={data} navigation={navigation} dataBdd={dataSqlite} />} />
       <Stack.Screen name="Detaile" component={Detaile} />
+      <Stack.Screen name="Map" component={DetailMap} />
 
 
     </Stack.Navigator>
