@@ -11,8 +11,8 @@ export default function Etape2({navigation}) {
     };
 
     const  handlessPressNext = () => {
-     //navigation.navigate('Signup')
-     navigation.navigate('Home')
+     navigation.navigate('Login')
+     //navigation.navigate('Home')
 
       };
 
