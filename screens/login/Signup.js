@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { actionSignup } from "../../redux/actions/actionAuths";
+import { useDispatch } from "react-redux";
 
 export default function Signup({ navigation }) {
+
+  const dispatch = useDispatch()
 
   const [nom, setnom] = useState();
   const [prenom, setprenom] = useState();
@@ -19,14 +23,16 @@ export default function Signup({ navigation }) {
         nom: nom,
         prenom: prenom,
         email: email,
-        prenom: prenom,
+        password: password,
         num: num,
 
       }
 
       try {
-        const jsonValue = JSON.stringify(dataUser)
-        await AsyncStorage.setItem('datauser', jsonValue)
+        /*const jsonValue = JSON.stringify(dataUser)
+        await AsyncStorage.setItem('datauser', jsonValue)*/
+        dispatch(actionSignup(dataUser))
+        
         navigation.navigate('Login')
 
       } catch (e) {
@@ -69,9 +75,9 @@ export default function Signup({ navigation }) {
         <TextInput style={styles.input} placeholderTextColor="#000"
           onChangeText={text => { setnum(text) }} keyboardType="numeric" placeholder='Votre n° de tel' />
         <TextInput style={styles.input} placeholderTextColor="#000"
-          onChangeText={text => { setemail(text) }} placeholder='Votre email*' />
+          onChangeText={text => { setemail(text) }} keyboardType="email-address" placeholder='Votre email*' />
         <TextInput style={styles.input} placeholderTextColor="#000"
-          onChangeText={text => { setpassword(text) }} placeholder='Votre mot de passe*' />
+          onChangeText={text => { setpassword(text) }} secureTextEntry placeholder='Votre mot de passe*' />
 
 
 

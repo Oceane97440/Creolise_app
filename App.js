@@ -5,6 +5,8 @@ import axios from 'axios';
 import HomeStackNav from './routes/HomeStackNav';
 import { initSqlite } from "./database/db";
 import { selectAllItem } from "./database/db";
+import { Provider } from "react-redux";
+import store from './redux/store'
 
 
 initSqlite().then(() => {
@@ -32,23 +34,23 @@ export default function App() {
       });
 
       setdataApi(response.data);
-      setLoading(false); 
-      
-      
- 
-     
+      setLoading(false);
+
+
+
+
     } catch (err) {
       console.log(err);
     }
   };
 
-  const selectAll = async ()=>{
+  const selectAll = async () => {
     try {
       const itemData = await selectAllItem()
       setdataListFavoris(itemData.rows._array)
       setLoading2(false)
     } catch (error) {
-      
+
     }
   }
 
@@ -57,8 +59,8 @@ export default function App() {
 
       await getApi();
 
-      
-      
+
+
     })();
   }, []);
 
@@ -67,30 +69,33 @@ export default function App() {
 
       await selectAll();
 
-      
-      
+
+
     })();
   }, []);
 
 
-  if ((loading)&&(loading2)&&(dataApi.length===0)) {
+  if ((loading) && (loading2) && (dataApi.length === 0)) {
 
     return (
       <View style={styles.container}>
         <ActivityIndicator />
       </View>
     );
-  }else{
+  } else {
 
     return (
 
-      <NavigationContainer style={styles.container}>
-  
-        <HomeStackNav  data={dataApi} dataSqlite={dataListFavoris}/>
-  
-      </NavigationContainer>
-  
-  
+      <Provider store={store}>
+
+        <NavigationContainer style={styles.container}>
+
+          <HomeStackNav data={dataApi} dataSqlite={dataListFavoris} />
+
+        </NavigationContainer>
+      </Provider>
+
+
     );
   }
 
