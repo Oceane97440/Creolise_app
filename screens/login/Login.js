@@ -1,20 +1,47 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableOpacity, TextInput } from 'react-native';
 import React, { useState, useEffect } from "react";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { actionLogin} from "../../redux/actions/actionAuths";
+import { useDispatch } from "react-redux";
+
 
 export default function Login({ navigation }) {
+  const dispatch = useDispatch()
+
+
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
+  const [error, seterror] = useState(null);
 
+  useEffect(() => {
+    if (error !== null) {
+      Alert.alert("Erreur",
+        error,
+        [{ text: "OK"}])
+    }
 
+  }, [error]);
 
   const handlessPressSignup = () => {
     navigation.navigate('Signup')
 
   };
-  const handlessPressLogin = () => {
+  const handlessPressLogin = async() => {
     if ((email) && (password)) {
-      alert("Ok")
+      const dataUser = {   
+        email: email,
+        password: password,
+
+      }
+      try {
+        /*const jsonValue = JSON.stringify(dataUser)
+        await AsyncStorage.setItem('datauser', jsonValue)*/
+        await dispatch(actionLogin(dataUser))
+
+        navigation.navigate('Home')
+
+      } catch (e) {
+        seterror(e.message)
+      }
 
 
     }else{
@@ -22,7 +49,6 @@ export default function Login({ navigation }) {
 
 
     }
-   // navigation.navigate('Home')
 
   };
 
@@ -41,9 +67,9 @@ export default function Login({ navigation }) {
 
 
         <TextInput style={styles.input} placeholderTextColor="#000"
-          onChangeText={text => { setemail(text) }} placeholder='Votre email*' />
+          onChangeText={text => { setemail(text) }} keyboardType="email-address" placeholder='Votre email*' />
         <TextInput style={styles.input} placeholderTextColor="#000"
-          onChangeText={text => { setpassword(text) }} placeholder='Votre mot de passe*' />
+          onChangeText={text => { setpassword(text) }} secureTextEntry placeholder='Votre mot de passe*' />
 
 
 
