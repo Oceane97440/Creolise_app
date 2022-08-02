@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Button, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { actionSignup } from "../../redux/actions/actionAuths";
@@ -14,6 +14,17 @@ export default function Signup({ navigation }) {
   const [num, setnum] = useState();
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
+  const [error, seterror] = useState(null);
+
+
+  useEffect(() => {
+    if (error !== null) {
+      Alert.alert("Erreur",
+        error,
+        [{ text: "OK"}])
+    }
+
+  }, [error]);
 
   const SaveData = async () => {
 
@@ -31,12 +42,12 @@ export default function Signup({ navigation }) {
       try {
         /*const jsonValue = JSON.stringify(dataUser)
         await AsyncStorage.setItem('datauser', jsonValue)*/
-        dispatch(actionSignup(dataUser))
-        
+        await dispatch(actionSignup(dataUser))
+
         navigation.navigate('Login')
 
       } catch (e) {
-        console.log(e)
+        seterror(e.message)
       }
     } else {
       alert("Il y a des champs manquantes")
@@ -104,10 +115,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: 'center',
   },
-  divForm:{
-    width:'100%',
-    margin:5,
-    bottom:40
+  divForm: {
+    width: '100%',
+    margin: 5,
+    bottom: 40
   },
   divInput: {
     flexDirection: 'row',
