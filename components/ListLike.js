@@ -45,8 +45,8 @@ const ListLike = ({ item, navigation }) => {
         "description": item.item_description,
         "categorie": item.item_categorie,
         "photos": item.item_photos,
-        "site":item.item_site,
-        "num":item.item_num,
+        "site": item.item_site,
+        "num": item.item_num,
         "avantage": dataApi
 
 
@@ -69,17 +69,18 @@ const ListLike = ({ item, navigation }) => {
 
 
     return (
-        <View>
-            <View style={Liststyles.divList}>
+        <View style={Liststyles.divList}>
+            <View style={Liststyles.divCard}>
+                <View style={Liststyles.divCardImg}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('Detaile', { item: items })
 
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate('Detaile', { item: items })
-
-                    }}>
-                    <Image source={{ uri: item.item_photos }}
-                        style={Liststyles.img} />
-                </TouchableOpacity>
+                        }}>
+                        <Image source={{ uri: item.item_photos }}
+                            style={Liststyles.img} />
+                    </TouchableOpacity>
+                </View>
 
                 <View style={Liststyles.divText}>
                     <View>

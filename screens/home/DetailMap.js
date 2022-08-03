@@ -8,7 +8,6 @@ const DetailMap = ({ route,navigation }) => {
   const { latitude } = route.params.item;
   const { longitude } = route.params.item;
   const { name } = route.params.item;
-  const { photos } = route.params.item;
 
   const handlessPressBack = () => {
     navigation.goBack()
@@ -17,8 +16,8 @@ const DetailMap = ({ route,navigation }) => {
 
 
   const markerCoord = {
-    latitude:latitude,
-    longitude:longitude
+    latitude:parseFloat(latitude),
+    longitude:parseFloat(longitude)
   }
 
   return (
@@ -36,8 +35,8 @@ const DetailMap = ({ route,navigation }) => {
 
       <MapView style={{ width: '100%', height: 600,margin:1 }}
         initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
+          latitude: parseFloat(latitude),
+          longitude: parseFloat(longitude),
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}

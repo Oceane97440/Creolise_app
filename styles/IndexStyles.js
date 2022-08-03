@@ -478,7 +478,7 @@ export const Liststyles = StyleSheet.create({
       margin: 5,
       alignContent: 'center',
       alignItems: 'center',
-      bottom:20,
+      //bottom:20,
       height:50
   },
   h2: {

@@ -43,7 +43,7 @@ const ListAdresse = ({ item, navigation }) => {
                 </View>
 
 
-                <View style={Liststyles.divText}>
+                <View style={[Liststyles.divText,{bottom:25}]}>
 
 
                     <View>
