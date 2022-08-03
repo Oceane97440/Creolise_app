@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Alert, TouchableOpacity, TextInput } from 'react-native';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useLayoutEffect } from "react";
 import { actionLogin} from "../../redux/actions/actionAuths";
 import { useDispatch } from "react-redux";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
@@ -11,6 +11,29 @@ export default function Login({ navigation }) {
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
   const [error, seterror] = useState(null);
+
+  const load=async()=>{
+    const userDetail =  await AsyncStorage.getItem("dataUser")
+
+    if (userDetail !== null) {
+      const userDetailObj = JSON.parse(userDetail)
+      const {token,userId,dateTokenExpire} = userDetailObj
+  
+      //verif valide du token
+      const expireDate = new Date(dateTokenExpire);
+      const now = new Date()
+  
+      if ((expireDate<=now)||(!token) ||(!userId)) {
+        return;
+      }
+      navigation.navigate('Home')
+    }
+ 
+  }
+
+  useLayoutEffect(() => {
+    load()
+  }, []);
 
   useEffect(() => {
     if (error !== null) {
@@ -62,7 +85,7 @@ export default function Login({ navigation }) {
       </View>
 
       <View style={styles.divForm}>
-        <Text>{email}  - {password}</Text>
+       
         <Text style={styles.h1}>Connexion {"\n"} </Text>
 
 

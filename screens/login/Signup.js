@@ -72,7 +72,6 @@ export default function Signup({ navigation }) {
       </View>
 
       <View style={styles.divForm}>
-        <Text>{nom} - {prenom} - {num} - {email}  - {password}</Text>
         <Text style={styles.h1}>Inscription {"\n"} </Text>
 
 

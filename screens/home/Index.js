@@ -4,10 +4,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Indexstyles } from '../../styles/IndexStyles';
 import List from '../../components/List';
 import SearchBar from '../../components/SearchBar';
-
-
+import { useSelector } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Index({ navigation,data }) {
+
+ /* const authUser = useSelector(state=>state.users)
+  console.log(authUser)*/
 
   const [fullList, setFullList] = useState([]);
   const [villes, setVille] = useState('Tout')
@@ -42,7 +45,15 @@ export default function Index({ navigation,data }) {
   )
 
 
+const deconnexion = async()=>{
 
+  const userDetail =  await AsyncStorage.getItem("dataUser")
+  if (userDetail !==null) {
+    await AsyncStorage.removeItem("dataUser")
+    navigation.navigate('Login')
+  }
+
+}
 
 
   const VilleSelected = (arg) => {
@@ -59,8 +70,8 @@ export default function Index({ navigation,data }) {
     <View style={Indexstyles.container}>
 
       <View style={Indexstyles.divBtnProfil}>
-        <TouchableOpacity >
-          <Icon name="user" size={30} color="#000" />
+        <TouchableOpacity onPress={deconnexion}>
+          <Icon name="power-off" size={30} color="#000" />
         </TouchableOpacity>
       </View>
 
