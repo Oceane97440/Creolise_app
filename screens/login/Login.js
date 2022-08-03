@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View, Alert, TouchableOpacity, TextInput } from 'react-native';
-import React, { useState, useEffect,useLayoutEffect } from "react";
-import { actionLogin} from "../../redux/actions/actionAuths";
+import React, { useState, useEffect, useLayoutEffect } from "react";
+import { actionLogin } from "../../redux/actions/actionAuths";
 import { useDispatch } from "react-redux";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoadScreen from '../hp/LoadScreen';
+
 
 export default function Login({ navigation }) {
   const dispatch = useDispatch()
@@ -11,24 +13,27 @@ export default function Login({ navigation }) {
   const [email, setemail] = useState();
   const [password, setpassword] = useState();
   const [error, seterror] = useState(null);
+  const [isLoad, setisLoad] = useState(false);
 
-  const load=async()=>{
-    const userDetail =  await AsyncStorage.getItem("dataUser")
+
+  const load = async () => {
+    const userDetail = await AsyncStorage.getItem("dataUser")
 
     if (userDetail !== null) {
       const userDetailObj = JSON.parse(userDetail)
-      const {token,userId,dateTokenExpire} = userDetailObj
-  
+      const { token, userId, dateTokenExpire } = userDetailObj
+
       //verif valide du token
       const expireDate = new Date(dateTokenExpire);
       const now = new Date()
-  
-      if ((expireDate<=now)||(!token) ||(!userId)) {
+
+      if ((expireDate <= now) || (!token) || (!userId)) {
         return;
       }
       navigation.navigate('Home')
     }
- 
+    setisLoad(true)
+
   }
 
   useLayoutEffect(() => {
@@ -39,7 +44,7 @@ export default function Login({ navigation }) {
     if (error !== null) {
       Alert.alert("Erreur",
         error,
-        [{ text: "OK"}])
+        [{ text: "OK" }])
     }
 
   }, [error]);
@@ -48,9 +53,9 @@ export default function Login({ navigation }) {
     navigation.navigate('Signup')
 
   };
-  const handlessPressLogin = async() => {
+  const handlessPressLogin = async () => {
     if ((email) && (password)) {
-      const dataUser = {   
+      const dataUser = {
         email: email,
         password: password,
 
@@ -67,7 +72,7 @@ export default function Login({ navigation }) {
       }
 
 
-    }else{
+    } else {
       alert("Il y a des champs manquantes")
 
 
@@ -75,44 +80,50 @@ export default function Login({ navigation }) {
 
   };
 
-  return (
-    <View style={styles.container}>
+  if (isLoad) {
+    return (
+      <View style={styles.container}>
 
-      <View style={styles.divBtnSignup}>
-        <TouchableOpacity onPress={handlessPressSignup} style={styles.btn_login}>
-          <Text style={{ color: '#d43d35', textAlign: 'center', fontSize: 15 }}>Inscription</Text>
-        </TouchableOpacity>
+        <View style={styles.divBtnSignup}>
+          <TouchableOpacity onPress={handlessPressSignup} style={styles.btn_login}>
+            <Text style={{ color: '#d43d35', textAlign: 'center', fontSize: 15 }}>Inscription</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.divForm}>
+
+          <Text style={styles.h1}>Connexion {"\n"} </Text>
+
+
+          <TextInput style={styles.input} placeholderTextColor="#000"
+            onChangeText={text => { setemail(text) }} keyboardType="email-address" placeholder='Votre email*' />
+          <TextInput style={styles.input} placeholderTextColor="#000"
+            onChangeText={text => { setpassword(text) }} secureTextEntry placeholder='Votre mot de passe*' />
+
+
+
+          <TouchableOpacity onPress={handlessPressLogin} style={styles.btn}>
+            <Text style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 22 }}>Valider</Text>
+          </TouchableOpacity>
+          <Text style={styles.textSmall}>Les champs marqués d'un astérisque (*) sont obligatoires</Text>
+
+
+
+          {/*<TouchableOpacity style={styles.btnGoogle}>
+  
+            <Text style={{ color: '#000', textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>
+              <Icon name="google" size={20} color="#000" />
+  
+              Connectez-vous avec Google</Text>
+          </TouchableOpacity>*/}
+        </View>
       </View>
-
-      <View style={styles.divForm}>
-       
-        <Text style={styles.h1}>Connexion {"\n"} </Text>
-
-
-        <TextInput style={styles.input} placeholderTextColor="#000"
-          onChangeText={text => { setemail(text) }} keyboardType="email-address" placeholder='Votre email*' />
-        <TextInput style={styles.input} placeholderTextColor="#000"
-          onChangeText={text => { setpassword(text) }} secureTextEntry placeholder='Votre mot de passe*' />
+    );
+  }
+  return (<LoadScreen />)
 
 
 
-        <TouchableOpacity onPress={handlessPressLogin} style={styles.btn}>
-          <Text style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold', fontSize: 22 }}>Valider</Text>
-        </TouchableOpacity>
-        <Text style={styles.textSmall}>Les champs marqués d'un astérisque (*) sont obligatoires</Text>
-
-
-
-        {/*<TouchableOpacity style={styles.btnGoogle}>
-
-          <Text style={{ color: '#000', textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>
-            <Icon name="google" size={20} color="#000" />
-
-            Connectez-vous avec Google</Text>
-        </TouchableOpacity>*/}
-      </View>
-    </View>
-  );
 }
 
 const styles = StyleSheet.create({
