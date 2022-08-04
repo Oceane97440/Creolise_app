@@ -76,8 +76,8 @@ const deconnexion = async()=>{
       </View>
 
       <Text style={Indexstyles.baseText}>
-        <Text style={Indexstyles.h1}>Rechercher votre destinations</Text>   {"\n"}   {"\n"}
-        <Text>Localiser les meilleur adresse à la Réunion</Text>
+        <Text style={Indexstyles.h1}>Rechercher votre destination</Text>   {"\n"}   {"\n"}
+        <Text>Localiser les meilleures adresses à la Réunion</Text>
         {"\n"}
       </Text>
 

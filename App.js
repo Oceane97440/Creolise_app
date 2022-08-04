@@ -72,7 +72,7 @@ export default function App() {
 
 
     })();
-  }, []);
+  }, [dataListFavoris]);
 
 
   if ((loading) && (loading2) && (dataApi.length === 0)) {
